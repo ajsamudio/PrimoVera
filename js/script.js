@@ -1,13 +1,3 @@
-const heroSection = document.querySelector('.hero');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        heroSection.classList.add('scrolled');
-    } else {
-        heroSection.classList.remove('scrolled');
-    }
-});
-
 // Function to check if an element is in the viewport
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
