@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const heroSection = document.querySelector('.hero');
 
 window.addEventListener('scroll', () => {
@@ -46,14 +45,3 @@ function showLogoOverlay() {
 
 // Show the logo overlay when the page loads
 window.addEventListener('load', showLogoOverlay);
-=======
-const header = document.querySelector('header');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
->>>>>>> 7394bda3b7a92bce6875b33f60ff7b0aa822cf16
