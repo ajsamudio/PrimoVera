@@ -29,7 +29,7 @@ header h1 {
 
 .hero img {
     height: auto;
-    width: 400px;
+    width: 250px;
     object-fit: contain;
     display: block;
     opacity: 1;
@@ -96,7 +96,7 @@ header h1 {
     position: relative;
     overflow: hidden;
     height: 100vh; /* Set height to 100% of viewport height */
-    background-image: url('../imgs/primovera.jpg');
+    background-image: url('../imgs/header.jpg');
     background-size: cover;
     background-position: center;
 }
