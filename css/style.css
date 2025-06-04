@@ -150,3 +150,197 @@ footer p {
         width: 90%; /* Adjust width for smaller screens */
     }
 }
+
+/* New CSS for "Our Core Services" section */
+/* General Body and Font Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Light gray background */
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Services Section Styling */
+.services-section {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+/* Services Container (Flexbox for layout) */
+.services-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
+    justify-content: center;
+    gap: 30px; /* Space between cards */
+}
+
+/* Individual Service Card Styling */
+.service-card {
+     background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    text-align: left;
+    /* flex: 1 1 calc(25% - 30px); /* Old value */ */
+    /* New flex properties for 4 cards with 30px gap: (100% - 3*30px) / 4 = 25% - 22.5px */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: calc(25% - 22.5px); 
+    max-width: 280px; /* This can remain, as calculated width will be ~277.5px on 1200px screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Key change: include padding and border in the element's total width and height */
+
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon Styling */
+.icon-wrapper {
+    background-color: #e0e7ee; /* Light background for icon */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-left: 0; /* Align icon to the left */
+}
+
+.icon-wrapper i {
+    font-size: 2.5em;
+    color: #3f51b5; /* A shade of blue for the icons */
+}
+
+/* Card Title */
+.service-card h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Card Description/Intro Paragraph */
+.service-card > p:first-of-type { /* Targeting the first paragraph after the H3 */
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* List Styling */
+.service-card ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.service-card ul li {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #444;
+    position: relative;
+    padding-left: 20px; /* Space for custom bullet */
+}
+
+.service-card ul li::before {
+    content: '\2022'; /* Unicode for a bullet point */
+    color: #3f51b5; /* Blue bullet */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+    left: 0;
+}
+
+/* Final Paragraph before button */
+.service-card p:last-of-type {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: auto; /* Pushes this paragraph to the bottom before the button */
+    margin-bottom: 25px;
+}
+
+/* Learn More Button Styling */
+.learn-more-btn {
+    display: inline-block;
+    background-color: #3f51b5; /* Blue background */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Aligns the button to the start (left) */
+}
+
+.learn-more-btn:hover {
+    background-color: #303f9f; /* Darker blue on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .service-card {
+        /* flex: 1 1 calc(50% - 30px); /* Old value */ */
+        /* New flex properties for 2 cards with 30px gap: (100% - 1*30px) / 2 = 50% - 15px */
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: calc(50% - 15px);
+        max-width: 400px; /* This max-width will likely take effect */
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2em;
+    }
+    .service-card {
+        flex: 1 1 90%; /* One card per row on small screens */
+        max-width: 500px; /* Allow wider cards on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .services-section {
+        padding: 40px 15px;
+    }
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+    .service-card {
+        padding: 25px;
+    }
+    .icon-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+    .icon-wrapper i {
+        font-size: 2em;
+    }
+    .service-card h3 {
+        font-size: 1.3em;
+    }
+    .learn-more-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
