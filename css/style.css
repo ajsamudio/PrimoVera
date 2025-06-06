@@ -1,36 +1,56 @@
-.hero img {
-    height: auto;
-    width: 250px;
-    object-fit: contain;
-    display: block;
-    opacity: 1;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+html {
+    overflow-x: hidden;
 }
 
-/* Style for the placeholder text */
-.hero p {
+*, *::before, *::after {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.hero-text-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff; /* White color for visibility against the background */
-    background-color: #101010;
+    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    font-size: 2.5em; /* Adjust as needed */
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9); /* Increased shadow size and opacity */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.75); /* Increased shadow size and opacity */
     font-weight: bold; /* Make the text bold */
     z-index: 10; /* Ensure it's above other elements if necessary */
     width: 80%; /* To allow text wrapping */
+    box-sizing: border-box;
+    display: flex; /* Use flexbox for vertical stacking */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 15px; /* Add space between text elements */
     animation: fadeInUp 1s ease-out forwards;
 }
 
-.image-container {
-    position: relative;
+.hero-text-container h1 {
+    font-size: 2.4em; /* Largest font size */
+    margin: 0; /* Remove default margin */
+}
+
+.hero-text-container h3 {
+    font-size: 1em; /* Smaller than h1 */
+    margin: 0; /* Remove default margin */
+}
+
+.hero-text-container p {
+    font-size: 0.8em; /* Smallest font size */
+    margin: 0; /* Remove default margin */
 }
 
 .hero {
@@ -86,77 +106,58 @@ footer p {
     font-size: 1.5em; /* Increased font size for bigger icons */
 }
 
-@keyframes subtle-pulse {
-    0% {
-        transform: translateX(-50%) scale(1);
-    }
-    50% {
-        transform: translateX(-50%) scale(1.02); /* Subtle zoom in */
-    }
-    100% {
-        transform: translateX(-50%) scale(1);
-    }
-}
-
-.logo-overlay {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    animation: subtle-pulse 3s infinite ease-in-out; /* Apply the animation */
-}
-
-.logo-overlay.visible {
-    opacity: 1;
-}
-
 @media (max-width: 768px) {
-    .logo-overlay {
-        width: 200px;
-        height: 200px;
-    }
-
-    /* Mobile-friendly adjustment for the placeholder text */
-    .hero p {
-        font-size: 1.5em; /* Smaller font size for mobile */
+    .hero-text-container {
         width: 90%; /* Adjust width for smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+        gap: 10px; /* Adjust gap for smaller screens */
     }
 
-    .hero img {
-        width: 200px;
+    .hero-text-container h1 {
+        font-size: 1.65em; /* Adjust font size for mobile */
+    }
+
+    .hero-text-container h3 {
+        font-size: .9em; /* Adjust font size for mobile */
+    }
+
+    .hero-text-container p {
+        font-size: 0.54em; /* Adjust font size for mobile */
     }
 }
 
 /* New CSS for "Our Core Services" section */
 /* General Body and Font Styles */
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
     margin: 0;
     padding: 0;
     background-color: #f8f8f8; /* Light gray background */
     line-height: 1.6;
     color: #333;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Services Section Styling */
 .services-section {
-    padding: 60px 20px;
+    /* This margin controls the vertical space between the hero section and the services section */
+    padding: 50px 5px;
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.section-title {
-    font-size: 2.5em;
-    color: #333;
-    margin-bottom: 50px;
-    font-weight: 700;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: hidden; /* Hide vertical scrollbar on the section */
 }
 
 /* Services Container (Flexbox for layout) */
 .services-container {
     display: flex;
     flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
-    justify-content: center;
-    gap: 30px; /* Space between cards */
+    justify-content: space-between; /* Evenly space out items */
+    /* align-items: stretch is the default */
+    height: auto;
+    overflow-y: hidden; /* Hide vertical scrollbar on the container */
 }
 
 /* Individual Service Card Styling */
@@ -166,16 +167,17 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     padding: 30px;
     text-align: left;
-    flex: 1 1 calc(25% - 22.5px);
+    flex: 1 1 calc(25% - 30px);
     max-width: 280px; /* This can remain, as calculated width will be ~277.5px on 1200px screen */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-sizing: border-box; /* Key change: include padding and border in the element's total width and height */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    flex-shrink: 0; /* Prevent flex item from shrinking */
+    margin: 10px; /* Add margin around cards */
 }
 
 .service-card.visible {
@@ -315,5 +317,164 @@ body {
     .learn-more-btn {
         padding: 8px 15px;
         font-size: 0.9em;
+    }
+}
+
+/* --- Header and Navigation Styles --- */
+header {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start */
+    align-items: center; /* Vertically center items */
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header is on top */
+    box-sizing: border-box;
+}
+
+.header-logo-container {
+    flex-basis: 30%; /* Logo takes 20% of the width */
+    display: flex;
+    justify-content: center; /* Center logo horizontally */
+    align-items: center; /* Center logo vertically */
+    padding-left: 10px; /* Small padding on the left */
+    transition: transform 0.3s ease; /* Add transition for smooth scaling */
+}
+
+.header-logo-container:hover {
+    transform: scale(1.1); /* Scale up by 10% on hover */
+}
+
+.header-logo {
+    height: 175px; /* Adjust size as needed */
+}
+
+.desktop-nav {
+    flex-basis: 80%; /* Nav takes 80% of the width */
+    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px; /* Added border-radius for consistency */
+    padding: 10px; /* Added padding for better appearance */
+}
+
+.desktop-nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly; /* Evenly space out list items */
+    align-items: center; /* Vertically center list items */
+    height: 100%; /* Ensure ul takes full height of its container */
+}
+
+.desktop-nav li {
+    margin-left: 0; /* Remove margin-left */
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.8em; /* Increased font size */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+    transition: color 0.3s ease;
+}
+
+.desktop-nav a:hover {
+    color: #3f51b5; /* Highlight color on hover */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow on hover */
+}
+
+/* Responsive styles for header and navigation */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none; /* Hide desktop nav on mobile */
+    }
+
+    header {
+        padding: 10px 20px; /* Adjust padding for smaller screens */
+        justify-content: space-between;
+    }
+
+    .header-logo {
+        height: 88px; /* Adjust logo size for smaller screens */
+    }
+}
+
+/* --- Mobile Navigation Styles --- */
+.mobile-nav {
+    display: none; /* Hidden by default, shown in media query */
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.mobile-nav .hamburger-icon {
+    background: none;
+    border: none;
+    font-size: 3em; /* Increased font size */
+    cursor: pointer;
+    color: #000; /* Changed color to black */
+    padding: 10px;
+}
+
+.mobile-menu {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 85px; /* Adjust based on header height */
+    left: 0;
+    width: 100%;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px; /* Added border-radius for consistency */
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1001;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu li {
+    margin: 0;
+    padding: 15px 20px; /* Add padding to list items */
+    border-bottom: 1px solid #eee; /* Add a subtle bottom border */
+}
+
+.mobile-menu li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.1em; /* Slightly increase font size */
+    display: block; /* Make the link a block element for padding to work */
+}
+
+/* Style to show the mobile menu when a class is added to the body or header */
+html body.mobile-menu-open .mobile-menu {
+    display: block !important;
+}
+
+/* Show mobile nav on screens up to 768px */
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: block;
+    }
+
+    .mobile-menu {
+        /* display: block !important; */
     }
 }

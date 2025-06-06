@@ -35,3 +35,15 @@ function showLogoOverlay() {
 
 // Show the logo overlay when the page loads
 window.addEventListener('load', showLogoOverlay);
+
+// --- Mobile Navigation JavaScript ---
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    const body = document.body;
+
+    if (hamburgerIcon) {
+        hamburgerIcon.addEventListener('click', function () {
+            body.classList.toggle('mobile-menu-open');
+        });
+    }
+});
