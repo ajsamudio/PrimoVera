@@ -84,6 +84,18 @@ img {
     }
 }
 
+@keyframes subtle-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 footer {
     background-color: #222121;
     color: #fff;
@@ -132,7 +144,7 @@ body {
     font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8; /* Light gray background */
+    background: linear-gradient(to bottom right, #f8f8f8, #e0e7ee); /* Subtle gradient background */
     line-height: 1.6;
     color: #333;
     overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -141,28 +153,79 @@ body {
 /* Services Section Styling */
 .services-section {
     /* This margin controls the vertical space between the hero section and the services section */
-    padding: 50px 5px;
+    padding: 50px 125px;
     text-align: center;
-    max-width: 1200px;
     margin: 0 auto;
     box-sizing: border-box;
     height: auto;
     overflow-y: hidden; /* Hide vertical scrollbar on the section */
+    background: linear-gradient(135deg, #e0e7ee, #c3d4e0, #a9bfd3); /* Gradient background */
+    background-size: 200% 200%;
+    animation: moving-gradient 10s ease infinite alternate; /* Animated gradient */
+    position: relative; /* Needed for absolute positioning of pseudo-element */
+    z-index: 1; /* Ensure content is above the pseudo-element */
+}
+
+/* Styling for the "Our Core Services" heading */
+.section-title {
+    font-size: 2.5em; /* Adjust font size as needed */
+    color: #333; /* Dark grey color */
+    margin-bottom: 40px; /* Space below the heading */
+    font-weight: 700; /* Bold font weight */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    letter-spacing: 1.5px; /* Add some letter spacing */
+    position: relative;
+    display: inline-block; /* To apply bottom border only to the text width */
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60%; /* Width of the underline */
+    height: 3px; /* Thickness of the underline */
+    background-color: #3f51b5; /* Blue underline color */
+    margin: 10px auto 0; /* Center the underline and add space above it */
+    border-radius: 2px; /* Rounded corners for the underline */
+}
+
+@keyframes moving-gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px); /* Subtle dot pattern */
+    background-size: 20px 20px;
+    z-index: -1; /* Place behind the content */
 }
 
 /* Services Container (Flexbox for layout) */
 .services-container {
     display: flex;
     flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
-    justify-content: space-between; /* Evenly space out items */
+    justify-content: center; /* Center items */
     /* align-items: stretch is the default */
     height: auto;
     overflow-y: hidden; /* Hide vertical scrollbar on the container */
+    max-width: 1200px; /* Limit the width of the container */
+    margin: 0 auto; /* Center the container */
 }
 
 /* Individual Service Card Styling */
 .service-card {
-     background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     padding: 30px;
@@ -188,12 +251,11 @@ body {
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    animation: subtle-pulse 1.5s infinite ease-in-out;
 }
 
 /* Icon Styling */
 .icon-wrapper {
-    background-color: #e0e7ee; /* Light background for icon */
-    border-radius: 50%;
     width: 70px;
     height: 70px;
     display: flex;
@@ -297,10 +359,6 @@ body {
     .services-section {
         padding: 40px 15px;
     }
-    .section-title {
-        font-size: 1.8em;
-        margin-bottom: 30px;
-    }
     .service-card {
         padding: 25px;
     }
@@ -317,6 +375,14 @@ body {
     .learn-more-btn {
         padding: 8px 15px;
         font-size: 0.9em;
+    }
+}
+
+/* Responsive styling for the "Our Core Services" heading */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2em; /* Adjust font size for mobile */
+        margin-bottom: 30px; /* Adjust margin for mobile */
     }
 }
 
@@ -377,7 +443,7 @@ header {
 
 .desktop-nav a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-weight: 600;
     font-size: 1.8em; /* Increased font size */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
