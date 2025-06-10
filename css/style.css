@@ -17,11 +17,10 @@ img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     color: #fff; /* White color for visibility against the background */
-    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
-    backdrop-filter: blur(10px); /* Apply blur effect */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+    /* background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);  */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 20px;
     border-radius: 10px;
@@ -56,7 +55,7 @@ img {
 .hero {
     position: relative;
     overflow: hidden;
-    height: 100vh; /* Set height to 100% of viewport height */
+    height: 80vh; /* Set height to 100% of viewport height */
     background-image: url('../imgs/header.jpg');
     background-size: cover;
     background-position: center;
@@ -153,7 +152,7 @@ body {
 /* Services Section Styling */
 .services-section {
     /* This margin controls the vertical space between the hero section and the services section */
-    padding: 50px 125px;
+    padding: 0 125px 50px 125px; /* Adjusted padding to remove top padding */
     text-align: center;
     margin: 0 auto;
     box-sizing: border-box;
@@ -401,7 +400,7 @@ header {
 }
 
 .header-logo-container {
-    flex-basis: 30%; /* Logo takes 20% of the width */
+    flex-basis: 10%; /* Logo takes 20% of the width */
     display: flex;
     justify-content: center; /* Center logo horizontally */
     align-items: center; /* Center logo vertically */
@@ -414,16 +413,17 @@ header {
 }
 
 .header-logo {
-    height: 175px; /* Adjust size as needed */
+    height: 240px; /* Adjust size as needed */
 }
 
 .desktop-nav {
     flex-basis: 80%; /* Nav takes 80% of the width */
-    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
-    backdrop-filter: blur(10px); /* Apply blur effect */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 10px; /* Added border-radius for consistency */
+    /* background-color: rgba(255, 255, 255, 0.15);  Translucent white background for glassmorphism 
+    backdrop-filter: blur(10px);  Apply blur effect 
+    border: 1px solid rgba(255, 255, 255, 0.2);  Subtle white border 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  Subtle shadow 
+    border-radius: 10px; Added border-radius for consistency  */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.75);
     padding: 10px; /* Added padding for better appearance */
 }
 
@@ -466,8 +466,18 @@ header {
         justify-content: space-between;
     }
 
+    .header-logo-container {
+        width: auto; /* Allow width to adjust based on content */
+    }
+
     .header-logo {
-        height: 88px; /* Adjust logo size for smaller screens */
+        height: 150px; /* Set a reasonable height for the logo on mobile */
+        width: auto; /* Allow width to adjust based on height and aspect ratio */
+        max-width: 100%; /* Ensure it doesn't exceed container width */
+    }
+
+    .header-logo-container {
+        flex-basis: auto; /* Allow container width to adjust */
     }
 }
 
