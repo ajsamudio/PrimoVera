@@ -400,7 +400,6 @@ header {
 }
 
 .header-logo-container {
-    flex-basis: 10%; /* Logo takes 20% of the width */
     display: flex;
     justify-content: center; /* Center logo horizontally */
     align-items: center; /* Center logo vertically */
@@ -408,12 +407,10 @@ header {
     transition: transform 0.3s ease; /* Add transition for smooth scaling */
 }
 
-.header-logo-container:hover {
-    transform: scale(1.1); /* Scale up by 10% on hover */
-}
 
 .header-logo {
-    height: 240px; /* Adjust size as needed */
+    max-height: 240px; /* Adjust size as needed */
+    width: auto;
 }
 
 .desktop-nav {
@@ -443,10 +440,10 @@ header {
 
 .desktop-nav a {
     text-decoration: none;
-    color: #fff;
+    color: #0096FF;
     font-weight: 600;
     font-size: 1.8em; /* Increased font size */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     transition: color 0.3s ease;
 }
 
@@ -533,10 +530,11 @@ header {
 
 .mobile-menu a {
     text-decoration: none;
-    color: #333;
+    color: white;
     font-weight: 600;
     font-size: 1.1em; /* Slightly increase font size */
     display: block; /* Make the link a block element for padding to work */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Style to show the mobile menu when a class is added to the body or header */
