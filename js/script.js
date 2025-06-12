@@ -47,3 +47,55 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// --- Desktop Navigation Hide/Show on Scroll ---
+let lastScrollTop = 0;
+let scrollDownCount = 0;
+const desktopNav = document.querySelector('.desktop-nav');
+const headerLogo = document.querySelector('.header-logo-container'); // Get header logo element
+const mobileNav = document.querySelector('.mobile-nav'); // Get mobile nav element
+
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Check if in mobile view by checking if mobileNav is displayed
+    const isMobileView = window.getComputedStyle(mobileNav).display !== 'none';
+
+    if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        scrollDownCount++;
+        // Edit the number '2' below to change the scroll amount needed to hide the elements
+        if (scrollDownCount >= 2) { 
+            if (!isMobileView) { // Apply to desktop nav and logo on desktop
+                desktopNav.style.opacity = '0'; // Start fade out
+                headerLogo.style.opacity = '0'; // Start fade out
+                setTimeout(() => {
+                    desktopNav.style.visibility = 'hidden'; // Hide after fade out
+                    headerLogo.style.visibility = 'hidden'; // Hide after fade out
+                }, 300); // Match CSS transition duration
+            } else { // Apply to mobile nav and logo on mobile
+                mobileNav.style.opacity = '0'; // Start fade out
+                headerLogo.style.opacity = '0'; // Start fade out
+                 setTimeout(() => {
+                    mobileNav.style.visibility = 'hidden'; // Hide after fade out
+                    headerLogo.style.visibility = 'hidden'; // Hide after fade out
+                }, 300); // Match CSS transition duration
+            }
+        }
+    } else {
+        // Scrolling up
+        scrollDownCount = 0; // Reset the counter
+        if (!isMobileView) { // Apply to desktop nav and logo on desktop
+            desktopNav.style.visibility = 'visible'; // Show before fade in
+            headerLogo.style.visibility = 'visible'; // Show before fade in
+            desktopNav.style.opacity = '1'; // Start fade in
+            headerLogo.style.opacity = '1'; // Start fade in
+        } else { // Apply to mobile nav and logo on mobile
+            mobileNav.style.visibility = 'visible'; // Show before fade in
+            headerLogo.style.visibility = 'visible'; // Show before fade in
+            mobileNav.style.opacity = '1'; // Start fade in
+            headerLogo.style.opacity = '1'; // Start fade in
+        }
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+});
