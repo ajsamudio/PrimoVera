@@ -33,7 +33,7 @@ img {
     align-items: center; /* Center items horizontally */
     gap: 15px; /* Add space between text elements */
     animation: fadeInUp 1s ease-out forwards;
-    transform: translate(-50%, calc(-50% + 200px)); /* Adjusted vertical position */
+    transform: translate(-50%, calc(-50% + 230px)); /* Adjusted vertical position */
 }
 
 .hero-text-container h1 {
@@ -56,7 +56,7 @@ img {
     overflow: hidden;
     height: 100vh; /* Set height to 100% of viewport height */
     background-image: url('../imgs/header.jpg');
-    background-size: contain; /* Zoom out the background image */
+    background-size: cover; /* Make the background image cover the entire section */
     background-position: center;
     background-repeat: no-repeat; /* Prevent background image from repeating */
 }
@@ -112,7 +112,7 @@ footer p {
         width: 90%; /* Adjust width for smaller screens */
         padding: 15px; /* Adjust padding for smaller screens */
         gap: 10px; /* Adjust gap for smaller screens */
-        transform: translate(-50%, calc(-50% + 200px)); /* Adjusted vertical position for mobile */
+        transform: translate(-50%, calc(-50% + 160px)); /* Adjusted vertical position for mobile */
     }
 
     .hero-text-container h1 {
@@ -431,7 +431,7 @@ header {
 
 .desktop-nav li {
     margin-left: 0; /* Remove margin-left */
-    margin-right: 20px; /* Add spacing between list items */
+    margin-right: 100px; /* Add spacing between list items */
 }
 
 .desktop-nav li:last-child {
@@ -442,7 +442,7 @@ header {
     text-decoration: none;
     color: #0096FF;
     font-weight: 600;
-    font-size: 1.5em; /* Reduced font size by half */
+    font-size: 1.2em; /* Reduced font size by half */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     transition: color 0.3s ease;
 }
