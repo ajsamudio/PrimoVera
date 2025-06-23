@@ -99,3 +99,56 @@ window.addEventListener('scroll', function() {
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
 });
+
+// --- Image Carousel JavaScript ---
+document.addEventListener('DOMContentLoaded', function () {
+    const carouselImages = document.querySelectorAll('.carousel-img');
+    let currentImageIndex = 0;
+
+    function showImage(index) {
+        carouselImages.forEach((img, i) => {
+            if (i === index) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
+    }
+
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+        showImage(currentImageIndex);
+    }
+
+    // Show the first image initially
+    showImage(currentImageIndex);
+
+    // Automatically switch images every 5 seconds (adjust as needed)
+    let carouselInterval = setInterval(nextImage, 5000);
+
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+
+    function changeImage(direction) {
+        clearInterval(carouselInterval); // Clear the automatic interval
+
+        if (direction === 'next') {
+            currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+        } else if (direction === 'prev') {
+            currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
+        }
+
+        showImage(currentImageIndex);
+
+        // Restart the automatic interval after a delay (e.g., 10 seconds)
+        carouselInterval = setInterval(nextImage, 10000);
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener('click', () => changeImage('prev'));
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener('click', () => changeImage('next'));
+    }
+});
