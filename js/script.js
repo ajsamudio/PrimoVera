@@ -25,6 +25,22 @@ animateServiceCards();
 // Check for animation on scroll
 window.addEventListener('scroll', animateServiceCards);
 
+// Function to add 'visible' class to contact section when they are in the viewport
+function animateContactSection() {
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) {
+        if (isInViewport(contactSection)) {
+            contactSection.classList.add('visible');
+        }
+    }
+}
+
+// Initial check on page load
+animateContactSection();
+
+// Check for animation on scroll
+window.addEventListener('scroll', animateContactSection);
+
 // Function to add 'visible' class to the logo overlay on page load
 function showLogoOverlay() {
     const logoOverlay = document.querySelector('.logo-overlay');

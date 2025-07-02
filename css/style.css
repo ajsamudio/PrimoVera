@@ -180,10 +180,12 @@ body {
     font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom right, #f8f8f8, #e0e7ee); /* Subtle gradient background */
     line-height: 1.6;
     color: #333;
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    background: linear-gradient(135deg, #e0e7ee, #c3d4e0, #a9bfd3); /* Gradient background */
+    background-size: 200% 200%;
+    animation: moving-gradient 10s ease infinite alternate;
 }
 
 /* Services Section Styling */
@@ -195,11 +197,22 @@ body {
     box-sizing: border-box;
     height: auto;
     overflow-y: hidden; /* Hide vertical scrollbar on the section */
-    background: linear-gradient(135deg, #e0e7ee, #c3d4e0, #a9bfd3); /* Gradient background */
-    background-size: 200% 200%;
-    animation: moving-gradient 10s ease infinite alternate; /* Animated gradient */
     position: relative; /* Needed for absolute positioning of pseudo-element */
     z-index: 1; /* Ensure content is above the pseudo-element */
+}
+
+.contact-section {
+    padding: 0 125px 50px 125px;
+    text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: hidden;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 /* Styling for the "Our Core Services" heading */
@@ -489,7 +502,7 @@ header {
     color: #0096FF;
     font-weight: 600;
     font-size: 1.2em; /* Reduced font size by half */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
     transition: color 0.3s ease;
 }
 
@@ -598,5 +611,140 @@ html body.mobile-menu-open .mobile-menu {
 
     .mobile-menu {
         /* display: block !important; */
+    }
+}
+
+/* Contact Section Styles */
+.contact-section {
+    padding: 0 125px 50px 125px;
+    text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: hidden;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.contact-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-intro {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-intro note {
+    font-size: 0.8em;
+    display: block;
+    margin-top: 10px;
+}
+
+.contact-info {
+    text-align: center;
+    color: #555;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        font-size: 0.9em;
+    }
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.captcha {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 40px 15px;
     }
 }
