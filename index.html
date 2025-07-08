@@ -178,16 +178,14 @@
             </div>
             <button type="submit" class="submit-btn">Submit Inquiry</button>
         </form>
-        <p class="contact-info">
-            Phone: +63 918 921 4395<br>
-            Email: info@primovera.net<br>
-        </p>
     </section>
 
     <footer>
         <p>&copy; 2025 Primo Vera. All rights reserved.<br>
             Location: Metro Manila, Philippines<br>
-            Business Hours: Monday–Friday 9:00 AM–6:00 PM
+            Monday–Friday 9:00 AM–6:00 PM<br>
+            Phone: +63 918 921 4395<br>
+            Email: info@primovera.net<br>
         </p>
         <div class="social-links">
             <a href="mailto:PrimoVerainc@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -198,6 +196,12 @@
             <a href="#"><i class="fas fa-map-marker-alt"></i></a>
         </div>
     </footer>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("_XcR2mFBTZ9Rq2GOy"); // Replace with your Public Key
+        })();
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>

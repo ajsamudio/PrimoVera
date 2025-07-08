@@ -669,13 +669,6 @@ html body.mobile-menu-open .mobile-menu {
     margin-top: 10px;
 }
 
-.contact-info {
-    text-align: center;
-    color: #555;
-    font-size: 1em;
-    margin-top: 20px;
-}
-
 @media (max-width: 768px) {
     .contact-info {
         font-size: 0.9em;

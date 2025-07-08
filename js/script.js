@@ -167,4 +167,48 @@ document.addEventListener('DOMContentLoaded', function () {
     if (nextButton) {
         nextButton.addEventListener('click', () => changeImage('next'));
     }
+
+    // --- EmailJS Integration ---
+    const contactForm = document.querySelector('.contact-form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            const fullName = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const projectDetails = document.getElementById('project-details').value;
+            const timeline = document.getElementById('timeline').value;
+            const budget = document.getElementById('budget').value;
+            const captcha = document.getElementById('captcha').value;
+
+            // Validate Captcha
+            if (captcha != "7") {
+                alert("Please answer the anti-spam question correctly.");
+                return;
+            }
+
+            // Send email using EmailJS
+            emailjs.send("service_rdghhke", "template_svruntp", { // Replace with your Service ID and Template ID
+                from_name: fullName,
+                from_email: email,
+                phone: phone,
+                service: service,
+                project_details: projectDetails,
+                timeline: timeline,
+                budget: budget
+            })
+            .then(function(response) {
+                console.log("SUCCESS!", response.status, response.text);
+                alert("Your message has been sent!");
+                contactForm.reset(); // Clear the form
+            }, function(error) {
+                console.log("FAILED...", error);
+                alert("An error occurred, please try again later.");
+            });
+        });
+    }
 });
