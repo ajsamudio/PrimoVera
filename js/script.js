@@ -195,11 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
             emailjs.send("service_rdghhke", "template_svruntp", { // Replace with your Service ID and Template ID
                 from_name: fullName,
                 from_email: email,
-                phone: phone,
-                service: service,
-                project_details: projectDetails,
-                timeline: timeline,
-                budget: budget
+                project_details: projectDetails
             })
             .then(function(response) {
                 console.log("SUCCESS!", response.status, response.text);
