@@ -18,9 +18,6 @@ img {
     top: 50%;
     left: 50%;
     color: #fff; /* White color for visibility against the background */
-    /* background-color: rgba(255, 255, 255, 0.15); 
-    backdrop-filter: blur(10px); 
-    border: 1px solid rgba(255, 255, 255, 0.2);  */
     padding: 20px;
     text-align: center;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.75); /* Increased shadow size and opacity */
@@ -135,8 +132,9 @@ footer {
     background-color: #222121;
     color: #fff;
     text-align: center;
-    padding: 10px;
+    padding: 25px 10px;
     width: 100%;
+    margin-top: 20px;
 }
 
 footer p {
@@ -204,19 +202,46 @@ body {
 }
 
 .contact-section {
-    padding: 0 125px 50px 125px;
-    text-align: center;
-    margin: 0 auto;
-    box-sizing: border-box;
-    height: auto;
-    overflow-y: hidden;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    background-image: url('../imgs/manila.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.contact-section p,
+.contact-section a {
+  color: white;
+}
+
+.button-33 {
+  background-color: #ffda63;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  color: #222;
+  cursor: pointer;
+  display: inline-block;
+  padding: 15px 30px;
+  text-align: center;
+  transition: all 250ms;
+  border: 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.button-33:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+  overflow: hidden;
+}
 /* Styling for the "Our Core Services" heading */
 .section-title {
     font-size: 2.5em; /* Adjust font size as needed */
@@ -622,13 +647,15 @@ html body.mobile-menu-open .mobile-menu {
     text-align: center;
     margin: 0 auto;
     box-sizing: border-box;
-    height: auto;
+    height: 95vh;
+    width: 95%;
     overflow-y: hidden;
     position: relative;
     z-index: 1;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    font-size: 1.8em;
 }
 
 .contact-section.visible {
@@ -648,6 +675,13 @@ html body.mobile-menu-open .mobile-menu {
     z-index: -1;
 }
 
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 40px;
+    font-size: 1.2em;
+  }
+}
+
 .contact-intro {
     font-size: 1em;
     color: #555;
@@ -656,7 +690,7 @@ html body.mobile-menu-open .mobile-menu {
 }
 
 .contact-intro note {
-    font-size: 0.8em;
+    font-size: 0.6em;
     display: block;
     margin-top: 10px;
 }
@@ -668,27 +702,31 @@ html body.mobile-menu-open .mobile-menu {
 }
 
 .button-33 {
-  background-color: #c2fbd7;
-  border-radius: 100px;
-  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-  color: green;
+  background-color: #0096FF;
+  border-radius: 5px;
+  box-shadow: 0 6px 120px rgba(0, 0, 0, 0.4);
+  color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-  padding: 7px 20px;
+  padding: 10px 20px;
   text-align: center;
-  text-decoration: none;
   transition: all 250ms;
   border: 0;
   font-size: 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .button-33:hover {
-  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
+  transform: scale(1.05);
+  overflow: hidden;
+}
+
+
+.contact-section p,
+.contact-section a {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.25);
 }
 
 .contact-section h2 {
@@ -703,17 +741,9 @@ html body.mobile-menu-open .mobile-menu {
 
 .contact-intro {
     font-size: 1.2em;
-    color: #555;
     margin-bottom: 20px;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.contact-intro note {
-    font-size: .8em;
-    display: block;
-    margin-top: 10px;
-    color: #666;
 }
 
 @media (max-width: 768px) {
