@@ -15,9 +15,12 @@ img {
 
 .hero-text-container {
     position: absolute;
-    top: 50%;
+    top: 46%; /* Adjust 'top' and 'transform' properties to change vertical position */
     left: 50%;
     color: #fff; /* White color for visibility against the background */
+    /* background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);  */
     padding: 20px;
     text-align: center;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.75); /* Increased shadow size and opacity */
@@ -27,11 +30,10 @@ img {
     box-sizing: border-box;
     display: flex; /* Use flexbox for vertical stacking */
     flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Vertically center the content */
     align-items: center; /* Center items horizontally */
     gap: 15px; /* Add space between text elements */
     animation: fadeInUp 1s ease-out forwards;
-    transform: translate(-50%, -50%); /* Adjusted vertical position */
+    transform: translate(-50%, calc(-50% + 230px)); /* Adjusted vertical position */
 }
 
 .hero-text-container h1 {
@@ -132,9 +134,8 @@ footer {
     background-color: #222121;
     color: #fff;
     text-align: center;
-    padding: 25px 10px;
+    padding: 10px;
     width: 100%;
-    margin-top: 20px;
 }
 
 footer p {
@@ -155,10 +156,9 @@ footer p {
 @media (max-width: 768px) {
     .hero-text-container {
         width: 90%; /* Adjust width for smaller screens */
-        padding: 25px; /* Adjust padding for smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
         gap: 10px; /* Adjust gap for smaller screens */
-        transform: translate(-50%, calc(-50% - 100px)); /* Adjusted vertical position for mobile */
-        top: 36%
+        transform: translate(-50%, calc(-50% + 160px)); /* Adjusted vertical position for mobile */
     }
 
     .hero-text-container h1 {
@@ -170,7 +170,7 @@ footer p {
     }
 
     .hero-text-container p {
-        font-size: 0.6em; /* Adjust font size for mobile */
+        font-size: 0.54em; /* Adjust font size for mobile */
     }
 }
 
@@ -202,51 +202,24 @@ body {
 }
 
 .contact-section {
-    background-image: url('../imgs/manila.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    background-color: rgba(0, 0, 0, 0.7);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 0 125px 50px 125px;
+    text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: hidden;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.contact-section p,
-.contact-section a {
-  color: white;
-}
-
-.button-33 {
-  background-color: #ffda63;
-  border-radius: 5px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
-  color: #222;
-  cursor: pointer;
-  display: inline-block;
-  padding: 15px 30px;
-  text-align: center;
-  transition: all 250ms;
-  border: 0;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.button-33:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
-  transform: scale(1.05);
-  overflow: hidden;
-}
 /* Styling for the "Our Core Services" heading */
 .section-title {
     font-size: 2.5em; /* Adjust font size as needed */
     color: #333; /* Dark grey color */
-    margin-bottom: 20px; /* Space below the heading */
+    margin-bottom: 40px; /* Space below the heading */
     font-weight: 700; /* Bold font weight */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
     letter-spacing: 1.5px; /* Add some letter spacing */
@@ -458,7 +431,7 @@ body {
 @media (max-width: 768px) {
     .section-title {
         font-size: 2em; /* Adjust font size for mobile */
-        margin-bottom: 12px; /* Adjust margin for mobile */
+        margin-bottom: 30px; /* Adjust margin for mobile */
     }
 }
 
@@ -647,15 +620,13 @@ html body.mobile-menu-open .mobile-menu {
     text-align: center;
     margin: 0 auto;
     box-sizing: border-box;
-    height: 95vh;
-    width: 95%;
+    height: auto;
     overflow-y: hidden;
     position: relative;
     z-index: 1;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    font-size: 1.8em;
 }
 
 .contact-section.visible {
@@ -675,11 +646,14 @@ html body.mobile-menu-open .mobile-menu {
     z-index: -1;
 }
 
-@media (max-width: 768px) {
-  .contact-section {
-    padding: 40px;
-    font-size: 1.2em;
-  }
+.contact-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .contact-intro {
@@ -690,9 +664,16 @@ html body.mobile-menu-open .mobile-menu {
 }
 
 .contact-intro note {
-    font-size: 0.6em;
+    font-size: 0.8em;
     display: block;
     margin-top: 10px;
+}
+
+.contact-info {
+    text-align: center;
+    color: #555;
+    font-size: 1em;
+    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -701,49 +682,59 @@ html body.mobile-menu-open .mobile-menu {
     }
 }
 
-.button-33 {
-  background-color: #0096FF;
-  border-radius: 5px;
-  box-shadow: 0 6px 120px rgba(0, 0, 0, 0.4);
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  padding: 10px 20px;
-  text-align: center;
-  transition: all 250ms;
-  border: 0;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.button-33:hover {
-  transform: scale(1.05);
-  overflow: hidden;
-}
-
-
-.contact-section p,
-.contact-section a {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.25);
-}
-
-.contact-section h2 {
-    animation: color-change 3s infinite alternate;
-}
-
-@keyframes color-change {
-    0% { color: #3f51b5; }
-    50% { color: #0096FF; }
-    100% { color: #3f51b5; }
-}
-
-.contact-intro {
-    font-size: 1.2em;
+.form-group {
     margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.captcha {
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-style: italic;
+    color: #666;
 }
 
 @media (max-width: 768px) {
