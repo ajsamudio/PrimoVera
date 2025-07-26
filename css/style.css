@@ -731,12 +731,6 @@ html body.mobile-menu-open .mobile-menu {
     background-color: #0056b3;
 }
 
-.captcha {
-    text-align: center;
-    font-style: italic;
-    color: #666;
-}
-
 @media (max-width: 768px) {
     .contact-section {
         padding: 40px 15px;
