@@ -2,7 +2,7 @@
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
-        rect.top < (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
         rect.bottom >= 0 &&
         rect.left >= 0 &&
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
@@ -11,10 +11,22 @@ function isInViewport(element) {
 
 // Function to add 'visible' class to service cards when they are in the viewport
 function animateServiceCards() {
-    const serviceCards = document.querySelectorAll('.service-card');
+    const serviceCards = document.querySelectorAll('.service-card, .placeholder-section');
+    const gridItems = document.querySelectorAll('.grid-item');
+
     serviceCards.forEach(card => {
         if (isInViewport(card)) {
             card.classList.add('visible');
+        } else if (card.classList.contains('visible')) {
+            card.classList.remove('visible');
+        }
+    });
+
+    gridItems.forEach(item => {
+        if (isInViewport(item)) {
+            item.classList.add('visible');
+        } else if (item.classList.contains('visible')) {
+            item.classList.remove('visible');
         }
     });
 }
@@ -120,6 +132,25 @@ window.addEventListener('scroll', function() {
 document.addEventListener('DOMContentLoaded', function () {
     const carouselImages = document.querySelectorAll('.carousel-img');
     let currentImageIndex = 0;
+
+const sections = document.querySelectorAll('.fade-in-section');
+const gridItems = document.querySelectorAll('.fade-in-item');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+
+gridItems.forEach(item => {
+  observer.observe(item);
+});
 
     function showImage(index) {
         carouselImages.forEach((img, i) => {
