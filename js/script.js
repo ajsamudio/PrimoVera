@@ -1,3 +1,63 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.contact-form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get the file selected by the user
+        const fileInput = document.querySelector('#file-upload');
+        const file = fileInput.files[0];
+
+        // Use FileReader to read the file as a data URL
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const fileDataURL = e.target.result;
+
+            // Create a new form data object
+            const formData = new FormData(form);
+
+            // Append the file data URL to the form data
+            formData.append('attachment', fileDataURL);
+
+            // Send the form data to FormSubmit using the Fetch API
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert('Form submitted successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form.');
+            });
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            // If no file is selected, still submit the form data
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert('Form submitted successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form.');
+            });
+        }
+    });
+});
+
 // Function to check if an element is in the viewport
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
