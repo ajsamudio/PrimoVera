@@ -260,3 +260,37 @@ gridItems.forEach(item => {
     }
 
 });
+
+// --- Image Modal JavaScript ---
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the modal
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const captionText = document.getElementById('caption');
+    const closeButton = document.getElementsByClassName('close-button')[0];
+
+    // Get all grid items
+    const gridItems = document.querySelectorAll('.image-grid .grid-item');
+
+    gridItems.forEach(item => {
+        item.addEventListener('click', function() {
+            modal.style.display = 'block';
+            modalImage.src = this.querySelector('img').src;
+            captionText.innerHTML = this.querySelector('p').innerHTML;
+        });
+    });
+
+    // When the user clicks on <span> (x), close the modal
+    if (closeButton) {
+        closeButton.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+
+    // When the user clicks anywhere outside of the image, close it
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
