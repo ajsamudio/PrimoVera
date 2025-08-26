@@ -271,6 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 fetch('https://formsubmit.co/info@primovera.net', {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
