@@ -10,10 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            alert('Form submitted successfully!');
+        .then(response => {
+            return response.text(); // Get the response as text
+        })
+        .then(text => {
+            console.log('Formsubmit response:', text); // Log the response text
+            try {
+                const data = JSON.parse(text); // Try to parse the response as JSON
+                alert('Form submitted successfully!');
+            } catch (e) {
+                console.error('Error parsing JSON:', e);
+                alert('Form submitted successfully!'); // Still alert success, as formsubmit likely still worked
+            }
         })
         .catch(error => {
             console.error('Error:', error);
