@@ -1,83 +1,95 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.contact-form');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const form = document.querySelector('.contact-form');
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+//     form.addEventListener('submit', function(event) {
+//         event.preventDefault();
 
-        const formData = new FormData(form);
+//         const formData = new FormData(form);
 
-        // Handle file upload
-        const fileInput = document.querySelector('input[type="file"][name="attachment"]');
-        if (fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+//         // Handle file upload
+//         const fileInput = document.querySelector('input[type="file"][name="attachment"]');
+//         if (fileInput.files.length > 0) {
+//             const file = fileInput.files[0];
+//             const reader = new FileReader();
 
-            reader.onload = function(e) {
-                formData.append('attachment', e.target.result); // Append base64 encoded file data
-                // Send the form data
-                fetch(form.action, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    return response.text(); // Get the response as text
-        })
-        .then(text => {
-            console.log('Formsubmit response:', text); // Log the response text
-            try {
-                const data = JSON.parse(text); // Try to parse the response as JSON
-                alert('Form submitted successfully!');
-            } catch (e) {
-                console.error('Error parsing JSON:', e);
-                alert('Form submitted successfully!'); // Still alert success, as formsubmit likely still worked
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            if (error instanceof TypeError && error.message === 'Failed to fetch') {
-                alert('Failed to submit the form. Please check your internet connection and try again.');
-            } else {
-                alert('An error occurred while submitting the form: ' + error.message);
-            }
-        });
-    };
+//             reader.onload = function(e) {
+//                 const base64Data = e.target.result;
+//                 console.log('Base64 File Data:', base64Data); // Log base64 data
+//                 console.log('Base64 File Data Length:', base64Data.length); // Log base64 data length
 
-    reader.onerror = function() {
-        console.error('Error reading file!');
-        alert('Error reading file!');
-    };
+//                 const formDataObject = {};
+//                 formData.forEach((value, key) => {
+//                     formDataObject[key] = value;
+//                 });
+//                 formDataObject['attachment'] = base64Data; // Add base64 data to the object
 
-    reader.readAsDataURL(file); // Read file as base64 data
-} else {
-    // No file selected, send the form data without attachment
-    fetch(form.action, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        return response.text(); // Get the response as text
-    })
-    .then(text => {
-        console.log('Formsubmit response:', text); // Log the response text
-        try {
-            const data = JSON.parse(text); // Try to parse the response as JSON
-            alert('Form submitted successfully!');
-        } catch (e) {
-            console.error('Error parsing JSON:', e);
-            alert('Form submitted successfully!'); // Still alert success, as formsubmit likely still worked
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        if (error instanceof TypeError && error.message === 'Failed to fetch') {
-            alert('Failed to submit the form. Please check your internet connection and try again.');
-        } else {
-            alert('An error occurred while submitting the form: ' + error.message);
-        }
-    });
-}
-});
-});
+//                 // Send the form data
+//                 fetch(form.action, {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify(formDataObject)
+//                 })
+//                 .then(response => {
+//                     return response.text(); // Get the response as text
+//         })
+//         .then(text => {
+//             console.log('Formsubmit response:', text); // Log the response text
+//             try {
+//                 const data = JSON.parse(text); // Try to parse the response as JSON
+//                 alert('Form submitted successfully!');
+//             } catch (e) {
+//                 console.error('Error parsing JSON:', e);
+//                 alert('Form submitted successfully!'); // Still alert success, as formsubmit likely still worked
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//             if (error instanceof TypeError && error.message === 'Failed to fetch') {
+//                 alert('Failed to submit the form. Please check your internet connection and try again.');
+//             } else {
+//                 alert('An error occurred while submitting the form: ' + error.message);
+//             }
+//         });
+//     };
+
+//     reader.onerror = function() {
+//         console.error('Error reading file!');
+//         alert('Error reading file!');
+//     };
+
+//     reader.readAsDataURL(file); // Read file as base64 data
+// } else {
+//     // No file selected, send the form data without attachment
+//     fetch(form.action, {
+//         method: 'POST',
+//         body: formData
+//     })
+//     .then(response => {
+//         return response.text(); // Get the response as text
+//     })
+//     .then(text => {
+//         console.log('Formsubmit response:', text); // Log the response text
+//         try {
+//             const data = JSON.parse(text); // Try to parse the response as JSON
+//             alert('Form submitted successfully!');
+//         } catch (e) {
+//             console.error('Error parsing JSON:', e);
+//             alert('Form submitted successfully!'); // Still alert success, as formsubmit likely still worked
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//         if (error instanceof TypeError && error.message === 'Failed to fetch') {
+//             alert('Failed to submit the form. Please check your internet connection and try again.');
+//         } else {
+//             alert('An error occurred while submitting the form: ' + error.message);
+//         }
+//     });
+// }
+// });
+// });
 
 // Function to check if an element is in the viewport
 function isInViewport(element) {
