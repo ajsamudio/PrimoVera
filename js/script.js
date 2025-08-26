@@ -1,96 +1,3 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     const form = document.querySelector('.contact-form');
-
-//     form.addEventListener('submit', function(event) {
-//         event.preventDefault();
-
-//         const formData = new FormData(form);
-
-//         // Handle file upload
-//         const fileInput = document.querySelector('input[type="file"][name="attachment"]');
-//         if (fileInput.files.length > 0) {
-//             const file = fileInput.files[0];
-//             const reader = new FileReader();
-
-//             reader.onload = function(e) {
-//                 const base64Data = e.target.result;
-//                 console.log('Base64 File Data:', base64Data); // Log base64 data
-//                 console.log('Base64 File Data Length:', base64Data.length); // Log base64 data length
-
-//                 const formDataObject = {};
-//                 formData.forEach((value, key) => {
-//                     formDataObject[key] = value;
-//                 });
-//                 formDataObject['attachment'] = base64Data; // Add base64 data to the object
-
-//                 // Send the form data
-//                 fetch(form.action, {
-//                     method: 'POST',
-//                     headers: {
-//                         'Content-Type': 'application/json'
-//                     },
-//                     body: JSON.stringify(formDataObject)
-//                 })
-//                 .then(response => {
-//                     return response.text(); // Get the response as text
-//         })
-//         .then(text => {
-//             console.log('Formsubmit response:', text); // Log the response text
-//             try {
-//                 const data = JSON.parse(text); // Try to parse the response as JSON
-//                 alert('Form submitted successfully!');
-//             } catch (e) {
-//                 console.error('Error parsing JSON:', e);
-//                 alert('Form submitted successfully!'); // Still alert success, as formsubmit likely still worked
-//             }
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//             if (error instanceof TypeError && error.message === 'Failed to fetch') {
-//                 alert('Failed to submit the form. Please check your internet connection and try again.');
-//             } else {
-//                 alert('An error occurred while submitting the form: ' + error.message);
-//             }
-//         });
-//     };
-
-//     reader.onerror = function() {
-//         console.error('Error reading file!');
-//         alert('Error reading file!');
-//     };
-
-//     reader.readAsDataURL(file); // Read file as base64 data
-// } else {
-//     // No file selected, send the form data without attachment
-//     fetch(form.action, {
-//         method: 'POST',
-//         body: formData
-//     })
-//     .then(response => {
-//         return response.text(); // Get the response as text
-//     })
-//     .then(text => {
-//         console.log('Formsubmit response:', text); // Log the response text
-//         try {
-//             const data = JSON.parse(text); // Try to parse the response as JSON
-//             alert('Form submitted successfully!');
-//         } catch (e) {
-//             console.error('Error parsing JSON:', e);
-//             alert('Form submitted successfully!'); // Still alert success, as formsubmit likely still worked
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error:', error);
-//         if (error instanceof TypeError && error.message === 'Failed to fetch') {
-//             alert('Failed to submit the form. Please check your internet connection and try again.');
-//         } else {
-//             alert('An error occurred while submitting the form: ' + error.message);
-//         }
-//     });
-// }
-// });
-// });
-
 // Function to check if an element is in the viewport
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
@@ -324,6 +231,99 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('click', function(event) {
         if (event.target == modal) {
             modal.style.display = 'none';
+        }
+    });
+});
+
+// --- Form Submission JavaScript ---
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.contact-form');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById('full-name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const service = document.getElementById('service').value;
+        const projectDetails = document.getElementById('project-details').value;
+        const timeline = document.getElementById('timeline').value;
+        const budget = document.getElementById('budget').value;
+        const fileInput = document.querySelector('input[name="attachment"]');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                const base64String = reader.result;
+
+                const formData = {
+                    'full-name': fullName,
+                    'email': email,
+                    'phone': phone,
+                    'service': service,
+                    'project-details': projectDetails,
+                    'timeline': timeline,
+                    'budget': budget,
+                    'attachment': base64String
+                };
+
+                fetch('https://formsubmit.co/info@primovera.net', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Form submitted successfully!');
+                        form.reset();
+                    } else {
+                        alert('Form submission failed. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Form submission failed. Please try again.');
+                });
+            }
+
+            reader.readAsDataURL(file);
+        } else {
+            const formData = {
+                'full-name': fullName,
+                'email': email,
+                'phone': phone,
+                'service': service,
+                'project-details': projectDetails,
+                'timeline': timeline,
+                'budget': budget,
+                'attachment': ''
+            };
+
+            fetch('https://formsubmit.co/info@primovera.net', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Form submitted successfully!');
+                    form.reset();
+                } else {
+                    alert('Form submission failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Form submission failed. Please try again.');
+            });
         }
     });
 });
