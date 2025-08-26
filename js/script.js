@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     gridItems.forEach(item => {
         item.addEventListener('click', function() {
-            modal.style.display = 'block';
+            modal.classList.add('active');
             modalImage.src = this.querySelector('img').src;
             captionText.innerHTML = this.querySelector('p').innerHTML;
         });
@@ -223,14 +223,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // When the user clicks on <span> (x), close the modal
     if (closeButton) {
         closeButton.addEventListener('click', function() {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
         });
     }
 
     // When the user clicks anywhere outside of the image, close it
     window.addEventListener('click', function(event) {
         if (event.target == modal) {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
         }
     });
 });
