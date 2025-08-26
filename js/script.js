@@ -1,8 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.contact-form');
 
+    // Function to check if the browser is online
+    function isOnline() {
+        return navigator.onLine;
+    }
+
     form.addEventListener('submit', function(event) {
         event.preventDefault();
+
+        // Check if the browser is online
+        if (!isOnline()) {
+            alert('Please check your internet connection and try again.');
+            return;
+        }
 
         // Get the file selected by the user
         const fileInput = document.querySelector('#file-upload');
