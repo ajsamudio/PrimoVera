@@ -116,90 +116,22 @@ window.addEventListener('scroll', function() {
         if (!isMobileView) { // Apply to desktop nav and logo on desktop
             desktopNav.style.visibility = 'visible'; // Show before fade in
             headerLogo.style.visibility = 'visible'; // Show before fade in
-            desktopNav.style.opacity = '1'; // Start fade in
-            headerLogo.style.opacity = '1'; // Start fade in
+            setTimeout(() => {
+                desktopNav.style.opacity = '1'; // Start fade in
+                headerLogo.style.opacity = '1'; // Start fade in
+            }, 10); // Small delay to allow visibility to apply before opacity transition
         } else { // Apply to mobile nav and logo on mobile
             mobileNav.style.visibility = 'visible'; // Show before fade in
             headerLogo.style.visibility = 'visible'; // Show before fade in
-            mobileNav.style.opacity = '1'; // Start fade in
-            headerLogo.style.opacity = '1'; // Start fade in
+            setTimeout(() => {
+                mobileNav.style.opacity = '1'; // Start fade in
+                headerLogo.style.opacity = '1'; // Start fade in
+            }, 10); // Small delay to allow visibility to apply before opacity transition
         }
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
 });
 
-// --- Image Carousel JavaScript ---
-document.addEventListener('DOMContentLoaded', function () {
-    const carouselImages = document.querySelectorAll('.carousel-img');
-    let currentImageIndex = 0;
-
-const sections = document.querySelectorAll('.fade-in-section');
-const gridItems = document.querySelectorAll('.fade-in-item');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-});
-
-sections.forEach(section => {
-  observer.observe(section);
-});
-
-gridItems.forEach(item => {
-  observer.observe(item);
-});
-
-    function showImage(index) {
-        carouselImages.forEach((img, i) => {
-            if (i === index) {
-                img.classList.add('active');
-            } else {
-                img.classList.remove('active');
-            }
-        });
-    }
-
-    function nextImage() {
-        currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
-        showImage(currentImageIndex);
-    }
-
-    // Show the first image initially
-    showImage(currentImageIndex);
-
-    // Automatically switch images every 5 seconds (adjust as needed)
-    let carouselInterval = setInterval(nextImage, 5000);
-
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
-
-    function changeImage(direction) {
-        clearInterval(carouselInterval); // Clear the automatic interval
-
-        if (direction === 'next') {
-            currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
-        } else if (direction === 'prev') {
-            currentImageIndex = (currentImageIndex - 1 + carouselImages.length) % carouselImages.length;
-        }
-
-        showImage(currentImageIndex);
-
-        // Restart the automatic interval after a delay (e.g., 10 seconds)
-        carouselInterval = setInterval(nextImage, 10000);
-    }
-
-    if (prevButton) {
-        prevButton.addEventListener('click', () => changeImage('prev'));
-    }
-
-    if (nextButton) {
-        nextButton.addEventListener('click', () => changeImage('next'));
-    }
-
-});
 
 // --- Image Modal JavaScript ---
 document.addEventListener('DOMContentLoaded', function() {

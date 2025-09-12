@@ -520,11 +520,6 @@ header {
 
 .desktop-nav {
     flex-basis: 40%; /* Nav takes 40% of the width */
-    /* background-color: rgba(255, 255, 255, 0.15);  Translucent white background for glassmorphism 
-    backdrop-filter: blur(10px);  Apply blur effect 
-    border: 1px solid rgba(255, 255, 255, 0.2);  Subtle white border 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  Subtle shadow 
-    border-radius: 10px; Added border-radius for consistency  */
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.75);
     padding: 10px; /* Added padding for better appearance */
     /* Display is controlled by JavaScript for hide/show on scroll */
@@ -555,7 +550,7 @@ header {
     text-decoration: none;
     color: #0096FF;
     font-weight: 600;
-    font-size: 1.2em; /* Reduced font size by half */
+    font-size: 1.6em; /* Reduced font size by half */
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
     transition: color 0.3s ease;
 }
@@ -806,19 +801,33 @@ html body.mobile-menu-open .mobile-menu {
 
     .image-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
+        grid-template-columns: repeat(4, 1fr); /* Display 4 images in a row */
+        gap: 0px; /* Reduce gap */
         margin-top: 20px;
         padding: 20px;
     }
 
-    .grid-item {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0px;
+    }
+
+    .image-grid h2 {
+        grid-column: 1 / -1; /* Make the heading span all columns */
+        text-align: center; /* Center the heading */
+    }
+
+.grid-item {
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 5px;
         background-color: white;
         transition: opacity 0.6s ease-out, transform 0.3s ease-out; /* Added transform transition */
         width: 95%;
+        display: flex;
+        justify-content: left;
+        align-items: top;
     }
 
     .grid-item:hover {
