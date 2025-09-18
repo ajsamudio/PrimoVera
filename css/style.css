@@ -818,6 +818,28 @@ html body.mobile-menu-open .mobile-menu {
     flex-direction: column;
     gap: 15px;
     padding: 15px;
+    overflow: hidden; /* Hide overflowing images */
+}
+
+.carousel-slide {
+    display: flex;
+    animation: slide 20s linear infinite; /* Adjust animation duration as needed */
+    width: calc(100% * 2); /* Double the width to accommodate the seamless loop */
+}
+
+.grid-item {
+    flex: 0 0 auto;
+    width: 100%; /* Set the width of each image */
+    margin-right: 15px; /* Add some spacing between images */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100% + (15px * 4))); /* Move the images to the left by the width of the container */
+    }
 }
 
 @media (min-width: 769px) {
