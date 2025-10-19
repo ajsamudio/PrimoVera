@@ -1,116 +1,132 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+html {
     overflow-x: hidden;
 }
 
-header {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-header.scrolled {
-    padding: 10px;
-    background-color: #eee;
-}
-
-header img {
-    width: 150px;
-}
-
-header h1 {
-    margin-top: 10px;
-    color: #333;
-}
-
-.hero img {
-    height: auto;
-    width: 250px;
-    object-fit: contain;
-    display: block;
+.fade-in-section.visible {
     opacity: 1;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translateY(0);
 }
 
-/* Style for the placeholder text */
-.hero p {
+.fade-in-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.hero-text-container {
     position: absolute;
-    top: 50%;
+    top: 46%; /* Adjust 'top' and 'transform' properties to change vertical position */
     left: 50%;
-    transform: translate(-50%, -50%);
     color: #fff; /* White color for visibility against the background */
-    background-color: #101010;
-    padding: 20px; 
-    border-radius: 10px; 
+    /* background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);  */
+    padding: 20px;
     text-align: center;
-    font-size: 2.5em; /* Adjust as needed */
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9); /* Increased shadow size and opacity */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.75); /* Increased shadow size and opacity */
     font-weight: bold; /* Make the text bold */
     z-index: 10; /* Ensure it's above other elements if necessary */
     width: 80%; /* To allow text wrapping */
+    box-sizing: border-box;
+    display: flex; /* Use flexbox for vertical stacking */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 15px; /* Add space between text elements */
     animation: fadeInUp 1s ease-out forwards;
+    transform: translate(-50%, calc(-50% + 230px)); /* Adjusted vertical position */
 }
 
-
-.hero .overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-around;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
+.hero-text-container h1 {
+    font-size: 2.4em; /* Largest font size */
+    margin: 0; /* Remove default margin */
 }
 
-/* Adjust the transparency of the background image by modifying the opacity property in the .hero img selector. */
-
-.hero .overlay a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 2.8em;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.hero-text-container h3 {
+    font-size: 1em; /* Smaller than h1 */
+    margin: 0; /* Remove default margin */
 }
 
-.hero .overlay a:hover {
-    transform: scale(1.1);
-}
-
-.image-container {
-    position: relative;
+.hero-text-container p {
+    font-size: 0.8em; /* Smallest font size */
+    margin: 0; /* Remove default margin */
 }
 
 .hero {
     position: relative;
     overflow: hidden;
     height: 100vh; /* Set height to 100% of viewport height */
-    background-image: url('../imgs/header.jpg');
-    background-size: cover;
-    background-position: center;
-    animation: zoom 20s infinite;
 }
 
-
-.background-overlay {
+.carousel-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.3); 
+    overflow: hidden;
+}
+
+.carousel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-img.active {
+    opacity: 1;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 5; /* Ensure buttons are above images but below text */
+    font-size: 2em;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
 }
 
 @keyframes fadeInUp {
@@ -120,7 +136,19 @@ header h1 {
     }
     to {
         opacity: 1;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, calc(-50% + 200px)); /* Adjusted vertical position */
+    }
+}
+
+@keyframes subtle-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
     }
 }
 
@@ -143,87 +171,147 @@ footer p {
 .social-links a {
     display: inline-block;
     margin: 0 10px;
-    font-size: 1.5em; /* Increased font size for bigger icons */
-}
-
-
-.logo-overlay {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.logo-overlay.visible {
-    opacity: 1;
+    font-size: 1.65em; /* Increased font size by 1.1 times */
+    color: #fff; /* Changed icon color to white */
 }
 
 @media (max-width: 768px) {
-    .logo-overlay {
-        width: 200px;
-        height: 200px;
-    }
-
-    .hero .overlay a {
-        font-size: 1.3em;
-    }
-
-    /* Mobile-friendly adjustment for the placeholder text */
-    .hero p {
-        font-size: 1.5em; /* Smaller font size for mobile */
+    .hero-text-container {
         width: 90%; /* Adjust width for smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+        gap: 10px; /* Adjust gap for smaller screens */
+        transform: translate(-50%, calc(-50% + 160px)); /* Adjusted vertical position for mobile */
+    }
+
+    .hero-text-container h1 {
+        font-size: 1.65em; /* Adjust font size for mobile */
+    }
+
+    .hero-text-container h3 {
+        font-size: .9em; /* Adjust font size for mobile */
+    }
+
+    .hero-text-container p {
+        font-size: 0.54em; /* Adjust font size for mobile */
     }
 }
 
 /* New CSS for "Our Core Services" section */
 /* General Body and Font Styles */
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8; /* Light gray background */
     line-height: 1.6;
     color: #333;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background: linear-gradient(135deg, #e0e7ee, #c3d4e0, #a9bfd3); /* Gradient background */
+    background-size: 200% 200%;
+    animation: moving-gradient 10s ease infinite alternate;
 }
 
 /* Services Section Styling */
 .services-section {
-    padding: 60px 20px;
+    /* This margin controls the vertical space between the hero section and the services section */
+    padding: 0 125px 50px 125px; /* Adjusted padding to remove top padding */
     text-align: center;
-    max-width: 1200px;
     margin: 0 auto;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: hidden; /* Hide vertical scrollbar on the section */
+    position: relative; /* Needed for absolute positioning of pseudo-element */
+    z-index: 1; /* Ensure content is above the pseudo-element */
 }
 
+.contact-section {
+    padding: 0 125px 50px 125px;
+    text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: hidden;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Styling for the "Our Core Services" heading */
 .section-title {
-    font-size: 2.5em;
-    color: #333;
-    margin-bottom: 50px;
-    font-weight: 700;
+    font-size: 2.5em; /* Adjust font size as needed */
+    color: #333; /* Dark grey color */
+    margin-bottom: 40px; /* Space below the heading */
+    font-weight: 700; /* Bold font weight */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+    letter-spacing: 1.5px; /* Add some letter spacing */
+    position: relative;
+    display: inline-block; /* To apply bottom border only to the text width */
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60%; /* Width of the underline */
+    height: 3px; /* Thickness of the underline */
+    background-color: #3f51b5; /* Blue underline color */
+    margin: 10px auto 0; /* Center the underline and add space above it */
+    border-radius: 2px; /* Rounded corners for the underline */
+}
+
+@keyframes moving-gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px); /* Subtle dot pattern */
+    background-size: 20px 20px;
+    z-index: -1; /* Place behind the content */
 }
 
 /* Services Container (Flexbox for layout) */
 .services-container {
     display: flex;
     flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
-    justify-content: center;
-    gap: 30px; /* Space between cards */
+    justify-content: center; /* Center items */
+    /* align-items: stretch is the default */
+    height: auto;
+    overflow-y: hidden; /* Hide vertical scrollbar on the container */
+    max-width: 1200px; /* Limit the width of the container */
+    margin: 0 auto; /* Center the container */
 }
 
 /* Individual Service Card Styling */
 .service-card {
-     background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     padding: 30px;
     text-align: left;
-    flex: 1 1 calc(25% - 22.5px);
+    flex: 1 1 calc(25% - 30px);
     max-width: 280px; /* This can remain, as calculated width will be ~277.5px on 1200px screen */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-sizing: border-box; /* Key change: include padding and border in the element's total width and height */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    flex-shrink: 0; /* Prevent flex item from shrinking */
+    margin: 10px; /* Add margin around cards */
 }
 
 .service-card.visible {
@@ -234,12 +322,11 @@ body {
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    animation: subtle-pulse 1.5s infinite ease-in-out;
 }
 
 /* Icon Styling */
 .icon-wrapper {
-    background-color: #e0e7ee; /* Light background for icon */
-    border-radius: 50%;
     width: 70px;
     height: 70px;
     display: flex;
@@ -268,6 +355,38 @@ body {
     font-size: 0.95em;
     color: #555;
     margin-bottom: 20px;
+}
+
+.carousel-container h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-image {
+    position: relative;
+    width: 100%;
+}
+
+.banner-image h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .banner-image h1 {
+        font-size: 2em;
+    }
 }
 
 /* List Styling */
@@ -343,10 +462,6 @@ body {
     .services-section {
         padding: 40px 15px;
     }
-    .section-title {
-        font-size: 1.8em;
-        margin-bottom: 30px;
-    }
     .service-card {
         padding: 25px;
     }
@@ -365,3 +480,503 @@ body {
         font-size: 0.9em;
     }
 }
+
+/* Responsive styling for the "Our Core Services" heading */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2em; /* Adjust font size for mobile */
+        margin-bottom: 30px; /* Adjust margin for mobile */
+    }
+}
+
+/* --- Header and Navigation Styles --- */
+header {
+    display: flex;
+    justify-content: space-between; /* Align items to the start and end */
+    align-items: center; /* Vertically center items */
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header is on top */
+    box-sizing: border-box;
+}
+
+.header-logo-container {
+    display: flex;
+    justify-content: center; /* Center logo horizontally */
+    align-items: center; /* Center logo vertically */
+    padding-left: 10px; /* Small padding on the left */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for smooth scaling and opacity */
+    opacity: 1; /* Initially visible */
+}
+
+
+.header-logo {
+    max-height: 168px; /* Reduced size by 0.7 times */
+    width: auto;
+}
+
+.desktop-nav {
+    flex-basis: 40%; /* Nav takes 40% of the width */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.75);
+    padding: 10px; /* Added padding for better appearance */
+    /* Display is controlled by JavaScript for hide/show on scroll */
+    transition: opacity 0.3s ease; /* Add transition for fade in/out */
+    opacity: 1; /* Initially visible */
+}
+
+.desktop-nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /* Align items to the end */
+    align-items: center; /* Vertically center list items */
+    height: 100%; /* Ensure ul takes full height of its container */
+}
+
+.desktop-nav li {
+    margin-left: 0; /* Remove margin-left */
+    margin-right: 100px; /* Add spacing between list items */
+}
+
+.desktop-nav li:last-child {
+    margin-right: 0; /* Remove margin from the last list item */
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    color: #0096FF;
+    font-weight: 600;
+    font-size: 1.6em; /* Reduced font size by half */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+    transition: color 0.3s ease;
+}
+
+.desktop-nav a:hover {
+    color: #3f51b5; /* Highlight color on hover */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow on hover */
+}
+
+/* Responsive styles for header and navigation */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none; /* Hide desktop nav on mobile */
+    }
+
+    header {
+        padding: 10px 20px; /* Adjust padding for smaller screens */
+        justify-content: space-between;
+    }
+
+    .header-logo-container {
+        width: auto; /* Allow width to adjust based on content */
+    }
+
+    .header-logo {
+        height: 105px; /* Reduced size by 0.7 times for mobile */
+        width: auto; /* Allow width to adjust based on height and aspect ratio */
+        max-width: 100%; /* Ensure it doesn't exceed container width */
+    }
+
+    .header-logo-container {
+        flex-basis: auto; /* Allow container width to adjust */
+    }
+}
+
+/* --- Mobile Navigation Styles --- */
+.mobile-nav {
+    display: none; /* Hidden by default, shown in media query */
+    align-items: center;
+    box-sizing: border-box;
+    transition: opacity 0.3s ease; /* Add transition for fade in/out */
+    opacity: 1; /* Initially visible */
+}
+
+.mobile-nav .hamburger-icon {
+    background: none;
+    border: none;
+    font-size: 3em; /* Increased font size */
+    cursor: pointer;
+    color: #000; /* Changed color to black */
+    padding: 10px;
+}
+
+.mobile-menu {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 85px; /* Adjust based on header height */
+    left: 0;
+    width: 100%;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.15); /* Translucent white background for glassmorphism */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px; /* Added border-radius for consistency */
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 1001;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu li {
+    margin: 0;
+    padding: 15px 20px; /* Add padding to list items */
+    border-bottom: 1px solid #eee; /* Add a subtle bottom border */
+}
+
+.mobile-menu li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1em; /* Slightly increase font size */
+    display: block; /* Make the link a block element for padding to work */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Style to show the mobile menu when a class is added to the body or header */
+html body.mobile-menu-open .mobile-menu {
+    display: block !important;
+}
+
+/* Show mobile nav on screens up to 768px */
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: flex; /* Use flex to align items */
+    }
+
+    .mobile-menu {
+        /* display: block !important; */
+    }
+}
+
+/* Contact Section Styles */
+.contact-section {
+    padding: 0 125px 50px 125px;
+    text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: auto;
+    overflow-y: hidden;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.contact-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-intro {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-intro note {
+    font-size: 0.8em;
+    display: block;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .contact-info {
+        font-size: 0.9em;
+    }
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23333"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+.contact-section {
+    padding: 40px 15px;
+    }
+}
+
+    .placeholder-section {
+        margin-top: 20px;
+        text-align: center;
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .banner-image img {
+        width: 100%;
+        height: calc(100vw / 2.35); /* Maintain 2.35:1 aspect ratio */
+        object-fit: cover;
+        border-radius: 0; /* Remove rounded corners */
+    }
+
+.image-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: transparent;
+}
+
+.image-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-grid div h2 {
+    font-size: 1.5em;
+}
+
+.image-grid div h3 {
+    font-size: 1em;
+    margin-bottom: 0.2em;
+}
+
+.image-grid div h4 {
+    font-size: 0.8em;
+    margin-bottom: 0.2em;
+}
+
+.image-grid h2 {
+    width: 100%;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    overflow: hidden; /* Hide overflowing images */
+    border-radius: 10px;
+}
+
+.carousel-slide {
+    display: flex;
+    animation: slide 20s linear infinite; /* Adjust animation duration as needed */
+    width: calc(100% * 2); /* Double the width to accommodate the seamless loop */
+}
+
+.grid-item {
+    flex: 0 0 auto;
+    width: 100%; /* Set the width of each image */
+    margin-right: 15px; /* Add some spacing between images */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100% + (15px * 4))); /* Move the images to the left by the width of the container */
+    }
+}
+
+@media (min-width: 769px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 images per row */
+        gap: 15px;
+        padding: 15px;
+    }
+}
+
+.grid-item {
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+}
+
+    .grid-item img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+        .grid-item {
+            padding: 5px; /* Reduce padding on small screens */
+        }
+        .grid-item p {
+            font-size: 3vw; /* Adjust font size based on viewport width for mobile */
+        }
+    }
+
+    /* Modal (Pop-up) Styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1002; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        flex-direction: column; /* Stack items vertically */
+        justify-content: center; /* Center vertically */
+        align-items: center; /* Center horizontally */
+    }
+
+    .modal.active {
+        display: flex; /* Use flexbox for centering when active */
+    }
+
+    /* Modal Content (Image) */
+    .modal-content {
+        margin: 0; /* Remove auto margin as flexbox handles centering */
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        object-fit: contain; /* Ensure image fits within bounds */
+        max-height: 70vh; /* Limit height to prevent overflow */
+    }
+
+    /* Caption of Modal Image */
+    #caption {
+        margin: 10px 0 0 0; /* Add some top margin, remove other margins */
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: auto; /* Allow height to adjust based on content */
+    }
+
+    /* Add Animation - Zoom in the Modal */
+    .modal-content, #caption {  
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+        from {transform:scale(0)} 
+        to {transform:scale(1)}
+    }
+
+    /* The Close Button */
+    .close-button {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* 100% Image Width on Smaller Screens */
+    @media only screen and (max-width: 700px){
+        .modal-content {
+            width: 100%;
+        }
+    }
