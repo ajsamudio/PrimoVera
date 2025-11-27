@@ -82,8 +82,9 @@ let scrollDownCount = 0;
 const desktopNav = document.querySelector('.desktop-nav');
 const headerLogo = document.querySelector('.header-logo-container'); // Get header logo element
 const mobileNav = document.querySelector('.mobile-nav'); // Get mobile nav element
+const mainHeader = document.querySelector('header'); // Get the main header element
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     // Check if in mobile view by checking if mobileNav is displayed
@@ -93,7 +94,11 @@ window.addEventListener('scroll', function() {
         // Scrolling down
         scrollDownCount++;
         // Edit the number '2' below to change the scroll amount needed to hide the elements
-        if (scrollDownCount >= 2) { 
+        if (scrollDownCount >= 2) {
+            // Hide the main header background
+            mainHeader.style.transform = 'translateY(-100%)';
+            mainHeader.style.transition = 'transform 0.3s ease';
+
             if (!isMobileView) { // Apply to desktop nav and logo on desktop
                 desktopNav.style.opacity = '0'; // Start fade out
                 headerLogo.style.opacity = '0'; // Start fade out
@@ -104,7 +109,7 @@ window.addEventListener('scroll', function() {
             } else { // Apply to mobile nav and logo on mobile
                 mobileNav.style.opacity = '0'; // Start fade out
                 headerLogo.style.opacity = '0'; // Start fade out
-                 setTimeout(() => {
+                setTimeout(() => {
                     mobileNav.style.visibility = 'hidden'; // Hide after fade out
                     headerLogo.style.visibility = 'hidden'; // Hide after fade out
                 }, 300); // Match CSS transition duration
@@ -113,6 +118,10 @@ window.addEventListener('scroll', function() {
     } else {
         // Scrolling up
         scrollDownCount = 0; // Reset the counter
+
+        // Show the main header background
+        mainHeader.style.transform = 'translateY(0)';
+
         if (!isMobileView) { // Apply to desktop nav and logo on desktop
             desktopNav.style.visibility = 'visible'; // Show before fade in
             headerLogo.style.visibility = 'visible'; // Show before fade in
@@ -134,7 +143,7 @@ window.addEventListener('scroll', function() {
 
 
 // --- Image Modal JavaScript ---
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Get the modal
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
@@ -145,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const gridItems = document.querySelectorAll('.image-grid .grid-item');
 
     gridItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             modal.classList.add('active');
             modalImage.src = this.querySelector('img').src;
             captionText.innerHTML = this.querySelector('p').innerHTML;
@@ -154,13 +163,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // When the user clicks on <span> (x), close the modal
     if (closeButton) {
-        closeButton.addEventListener('click', function() {
+        closeButton.addEventListener('click', function () {
             modal.classList.remove('active');
         });
     }
 
     // When the user clicks anywhere outside of the image, close it
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
         if (event.target == modal) {
             modal.classList.remove('active');
         }
@@ -168,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // --- Carousel JavaScript ---
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const carouselContainer = document.querySelector('.carousel-container');
     const carouselImages = document.querySelectorAll('.carousel-img');
     const prevButton = document.querySelector('.carousel-button.prev');
@@ -229,4 +238,37 @@ document.addEventListener('DOMContentLoaded', function() {
     //         startCarousel();
     //     });
     // }
+});
+
+// --- Floating Social FAB ---
+document.addEventListener('DOMContentLoaded', function () {
+    const fabButton = document.getElementById('fabButton');
+    const fabContainer = document.querySelector('.floating-social-fab');
+
+    if (fabButton && fabContainer) {
+        fabButton.addEventListener('click', function () {
+            fabContainer.classList.toggle('active');
+        });
+    }
+});
+
+// Hide FAB on scroll down (matching nav behavior)
+const fabContainer = document.querySelector('.floating-social-fab');
+let lastScrollTopFab = 0;
+
+window.addEventListener('scroll', function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (fabContainer) {
+        if (scrollTop > lastScrollTopFab && scrollTop > 100) {
+            // Scrolling down
+            fabContainer.style.transform = 'translateY(100px)'; // Hide downwards
+            fabContainer.style.opacity = '0';
+        } else {
+            // Scrolling up
+            fabContainer.style.transform = 'translateY(0)';
+            fabContainer.style.opacity = '1';
+        }
+    }
+    lastScrollTopFab = scrollTop <= 0 ? 0 : scrollTop;
 });
