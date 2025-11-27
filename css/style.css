@@ -814,3 +814,9 @@ footer p {
         font-size: 1rem;
     }
 }
+/* Override to ensure floating button stays at very bottom right */
+.floating-social-fab {
+    position: fixed !important;
+    bottom: 15px !important;
+    right: 15px !important;
+}
