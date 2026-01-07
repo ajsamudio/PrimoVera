@@ -178,10 +178,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // --- Carousel JavaScript ---
 document.addEventListener('DOMContentLoaded', function () {
-    const carouselContainer = document.querySelector('.carousel-container');
-    const carouselImages = document.querySelectorAll('.carousel-img');
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const nextButton = document.querySelector('.carousel-button.next');
+    const carouselContainer = document.querySelector('.hero .carousel-container');
+    const carouselImages = carouselContainer.querySelectorAll('.carousel-img');
+    const prevButton = carouselContainer.querySelector('.carousel-button.prev');
+    const nextButton = carouselContainer.querySelector('.carousel-button.next');
     let currentIndex = 0;
     let intervalId;
 
