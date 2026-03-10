@@ -23,8 +23,8 @@
         <nav class="desktop-nav">
             <div class="desktop-nav-links">
                 <ul>
-                    <li><a href="#">Our Company</a></li>
-                    <li><a href="#placeholder-section">Our Projects</a></li>
+                    <li><a href="#about-section">Our Company</a></li>
+                    <li><a href="#projects-section">Our Projects</a></li>
                     <li><a href="#contact-section">Contact Us</a></li>
                 </ul>
             </div>
@@ -35,9 +35,9 @@
             </button>
             <div class="mobile-menu">
                 <ul>
-                    <li><a href="#">Our Company</a></li>
-                    <li><a href="#">Our Projects</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#about-section">Our Company</a></li>
+                    <li><a href="#projects-section">Our Projects</a></li>
+                    <li><a href="#contact-section">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -52,14 +52,51 @@
             <button class="carousel-button prev">&#10094;</button>
             <button class="carousel-button next">&#10095;</button>
         </div>
+        <div class="carousel-dots" id="hero-dots"></div>
         <div class="background-overlay"></div>
         <div class="hero-text-container">
             <h1>Crafting Spaces. Managing Assets. Delivering Value.</h1>
             <h3>From concept to completion and beyond — we provide full-service solutions in architectural design,
                 engineering, construction, and property management tailored to your vision.</h3>
-            <p>Servicing Clients Across the Philippines - From Metro Manila to Mindinao </p>
+            <p>Servicing Clients Across the Philippines - From Metro Manila to Mindanao </p>
         </div>
     </section>
+
+    <div class="section-divider"></div>
+
+    <!-- About Us Section -->
+    <section class="about-section fade-in-section" id="about-section">
+        <div class="about-inner">
+            <div class="about-text">
+                <h2 class="section-title about-title">Our Company</h2>
+                <p class="about-lead">PrimoVera is a Philippine-based Architecture, Engineering, and Construction firm
+                    with a full-service property management division. We deliver end-to-end project solutions — from
+                    the first sketch to the final handover and beyond.</p>
+                <p class="about-lead">Founded on a commitment to quality and integrity, we work with residential,
+                    commercial, and institutional clients across the Philippines, bringing precision and creativity
+                    to every project we undertake.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Completed Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Service Disciplines</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">PH</span>
+                        <span class="stat-label">Metro Manila to Mindanao</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <img src="imgs/header.jpg" alt="PrimoVera Project" class="about-img">
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
 
     <section class="services-section">
         <h2 class="section-title">Our Core Services</h2>
@@ -135,9 +172,11 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!--Projects -->
 
-    <section class="placeholder-section visible fade-in-section" id="placeholder-section">
+    <section class="placeholder-section visible fade-in-section" id="projects-section">
 
         <div class="banner-image">
             <div class="carousel-container projects-carousel">
@@ -153,416 +192,405 @@
             <h1>Our Projects</h1>
         </div>
 
-        <div class="image-grid" id="Architect">
-            <div>
-                <h2><b>Design and Construction Works</b></h2>
-                <h3>Project: Floritas’s Countryside Restaurant</h3>
-                <h4>Location: Silang, Cavite</h4>
+        <!-- Project Category Filter -->
+        <div class="projects-filter-bar">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="design-construction">Design &amp; Construction</button>
+            <button class="filter-btn" data-filter="interior-fitout">Interior Fit-Out</button>
+            <button class="filter-btn" data-filter="kitchen-fitout">Kitchen &amp; Specialty</button>
+        </div>
+
+        <div class="image-grid project-block" data-category="design-construction" id="project-floritas">
+            <div class="project-header">
+                <p class="project-category-label">Design &amp; Construction Works</p>
+                <h3 class="project-title">Floritas's Countryside Restaurant</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Silang, Cavite</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/Floritas1.PNG" alt="Placeholder Image">
+                <img src="imgs/Floritas1.PNG" alt="Floritas Countryside Restaurant Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Floritas2.PNG" alt="Placeholder Image">
+                <img src="imgs/Floritas2.PNG" alt="Floritas Countryside Restaurant Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Floritas3.PNG" alt="Placeholder Image">
+                <img src="imgs/Floritas3.PNG" alt="Floritas Countryside Restaurant Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Floritas4.PNG" alt="Placeholder Image">
+                <img src="imgs/Floritas4.PNG" alt="Floritas Countryside Restaurant Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Engineering">
-            <div>
-
-                Project: Dakkar Multinational Townhouse Project
-                <br>
-                Location: Solana Village, BF Homes, Paranaque City
+        <div class="image-grid project-block" data-category="design-construction" id="project-solona">
+            <div class="project-header">
+                <h3 class="project-title">Dakkar Multinational Townhouse Project</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Solana Village, BF Homes, Paranaque
+                    City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/Solona1.PNG">
+                <img src="imgs/Solona1.PNG" alt="Solona Townhouse Project Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/solona2.PNG">
+                <img src="imgs/solona2.PNG" alt="Solona Townhouse Project Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/solona3.PNG">
+                <img src="imgs/solona3.PNG" alt="Solona Townhouse Project Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/solona4.PNG">
-            </div>
-        </div>
-
-        <div class="image-grid" id="Commercial">
-            <div>
-
-                Project: Gardenvale Subdivision
-                <br>
-                Location: Evacom Sucat, Paranaque City
-            </div>
-        </div>
-        <div class="grid-container">
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Garden4.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Garden1.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Garden2.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Garden3.PNG" alt="Placeholder Image">
+                <img src="imgs/solona4.PNG" alt="Solona Townhouse Project Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: Goodness Multinational Subdivision
-                <br>
-                Location: Multinational Village Sucat, Paranaque City
+        <div class="image-grid project-block" data-category="design-construction" id="project-gardenvale">
+            <div class="project-header">
+                <h3 class="project-title">Gardenvale Subdivision</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Evacom Sucat, Paranaque City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/Goodness1.png" alt="Placeholder Image">
+                <img src="imgs/Garden4.PNG" alt="Gardenvale Subdivision Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Goodness2.png" alt="Placeholder Image">
+                <img src="imgs/Garden1.PNG" alt="Gardenvale Subdivision Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Goodness3.png" alt="Placeholder Image">
+                <img src="imgs/Garden2.PNG" alt="Gardenvale Subdivision Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Goodness4.png" alt="Placeholder Image">
+                <img src="imgs/Garden3.PNG" alt="Gardenvale Subdivision Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: Jasmine Subdivision
-                <br>
-                Location: UPS IV Subdivision Sucat, Paranaque City
+        <div class="image-grid project-block" data-category="design-construction" id="project-goodness">
+            <div class="project-header">
+                <h3 class="project-title">Goodness Multinational Subdivision</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Multinational Village Sucat, Paranaque
+                    City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/Jasmine1.png" alt="Placeholder Image">
+                <img src="imgs/Goodness1.png" alt="Goodness Multinational Subdivision Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Jasmine2.png" alt="Placeholder Image">
+                <img src="imgs/Goodness2.png" alt="Goodness Multinational Subdivision Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Jasmine3.png" alt="Placeholder Image">
+                <img src="imgs/Goodness3.png" alt="Goodness Multinational Subdivision Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Jasmine4.png" alt="Placeholder Image">
-            </div>
-        </div>
-
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: Northshore Village
-                <br>
-                Location: Malabon City
-            </div>
-        </div>
-        <div class="grid-container">
-            <div class="grid-item fade-in-item">
-                <img src="imgs/North1.png" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/North2.png" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/North3.png" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/North4.png" alt="Placeholder Image">
+                <img src="imgs/Goodness4.png" alt="Goodness Multinational Subdivision Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: Ireneville Subdivision
-                <br>
-                Location: Sucat, Paranaque City
+        <div class="image-grid project-block" data-category="design-construction" id="project-jasmine">
+            <div class="project-header">
+                <h3 class="project-title">Jasmine Subdivision</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> UPS IV Subdivision Sucat, Paranaque
+                    City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/ireneville1.png" alt="Placeholder Image">
+                <img src="imgs/Jasmine1.png" alt="Jasmine Subdivision Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/ireneville2.png" alt="Placeholder Image">
+                <img src="imgs/Jasmine2.png" alt="Jasmine Subdivision Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/ireneville3.png" alt="Placeholder Image">
+                <img src="imgs/Jasmine3.png" alt="Jasmine Subdivision Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/ireneville4.png" alt="Placeholder Image">
-            </div>
-        </div>
-
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: Tivoli Royale
-                <br>
-                Location: Quezon City
-            </div>
-        </div>
-        <div class="grid-container">
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Tivoli1.png" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Tivoli4.png" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Tivoli3.png" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Tivoli2.png" alt="Placeholder Image">
+                <img src="imgs/Jasmine4.png" alt="Jasmine Subdivision Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: One-Storey Residential with Roof Deck
-                <br>
-                Location: Lot 27 Blk 9 Vista Real Classica Phase 2, Commonwealth Quezon City
+        <div class="image-grid project-block" data-category="design-construction" id="project-northshore">
+            <div class="project-header">
+                <h3 class="project-title">Northshore Village</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Malabon City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/One1.png" alt="Placeholder Image">
+                <img src="imgs/North1.png" alt="Northshore Village Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/One2.png" alt="Placeholder Image">
+                <img src="imgs/North2.png" alt="Northshore Village Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/one3.png" alt="Placeholder Image">
+                <img src="imgs/North3.png" alt="Northshore Village Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/One4.png" alt="Placeholder Image">
+                <img src="imgs/North4.png" alt="Northshore Village Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: La Montana Resort Hotel Project
-                <br>
-                Location: Lot 52, Blk 9 Fuji St., La Montana Estates Brgy., Sta. Cruz, Antipolo City, Rizal
+        <div class="image-grid project-block" data-category="design-construction" id="project-ireneville">
+            <div class="project-header">
+                <h3 class="project-title">Ireneville Subdivision</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Sucat, Paranaque City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/Montana1.png" alt="Placeholder Image">
+                <img src="imgs/ireneville1.png" alt="Ireneville Subdivision Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Montana2.png" alt="Placeholder Image">
+                <img src="imgs/ireneville2.png" alt="Ireneville Subdivision Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Montana3.png" alt="Placeholder Image">
+                <img src="imgs/ireneville3.png" alt="Ireneville Subdivision Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Montana4.png" alt="Placeholder Image">
+                <img src="imgs/ireneville4.png" alt="Ireneville Subdivision Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-                <h2><b>Office Renovation/ Interior Fit-out Works</b></h2>
-                Project: Dagupan Electric Company (DECORP)
-                <br>
-                Location: 62 West Ave, Quezon City, 1104 Metro Manila
+        <div class="image-grid project-block" data-category="design-construction" id="project-tivoli">
+            <div class="project-header">
+                <h3 class="project-title">Tivoli Royale</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Quezon City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag1.png" alt="Placeholder Image">
+                <img src="imgs/Tivoli1.png" alt="Tivoli Royale Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag2.png" alt="Placeholder Image">
+                <img src="imgs/Tivoli4.png" alt="Tivoli Royale Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag3.png" alt="Placeholder Image">
+                <img src="imgs/Tivoli3.png" alt="Tivoli Royale Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag4.png" alt="Placeholder Image">
+                <img src="imgs/Tivoli2.png" alt="Tivoli Royale Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: Dagupan Electric Company (DECORP)
-                <br>
-                Location: West Avenue, Quezon City
+        <div class="image-grid project-block" data-category="design-construction" id="project-one-storey">
+            <div class="project-header">
+                <h3 class="project-title">One-Storey Residential with Roof Deck</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Lot 27 Blk 9 Vista Real Classica Phase
+                    2, Commonwealth Quezon City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag5.png" alt="Placeholder Image">
+                <img src="imgs/One1.png" alt="One-Storey Residential Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag6.png" alt="Placeholder Image">
+                <img src="imgs/One2.png" alt="One-Storey Residential Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag7.png" alt="Placeholder Image">
+                <img src="imgs/one3.png" alt="One-Storey Residential Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/Dag8.png" alt="Placeholder Image">
-            </div>
-        </div>
-
-        <div class="image-grid" id="Property">
-            <div>
-                <h2><b>Interior Fit-out Works</b></h2>
-                Project: Macao Project
-                <br>
-                Location: Signa Designer Residences, Ground, Valero, Makati, Metro Manila
-            </div>
-        </div>
-        <div class="grid-container">
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Macao1.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/macao2.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/macao3.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/macao4.PNG" alt="Placeholder Image">
+                <img src="imgs/One4.png" alt="One-Storey Residential Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: ANYTIME FITNESS - SM City Sucat
-                <br>
-                Location: Bldg. B, SM City, 2nd Level Annex, 1700 Dr Arcadio Santos Ave, Parañaque
+        <div class="image-grid project-block" data-category="design-construction" id="project-la-montana">
+            <div class="project-header">
+                <h3 class="project-title">La Montana Resort Hotel Project</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Lot 52, Blk 9 Fuji St., La Montana
+                    Estates, Sta. Cruz, Antipolo City, Rizal</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="design-construction">
             <div class="grid-item fade-in-item">
-                <img src="imgs/sucat1.PNG" alt="Placeholder Image">
+                <img src="imgs/Montana1.png" alt="La Montana Resort Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/sucat2.PNG" alt="Placeholder Image">
+                <img src="imgs/Montana2.png" alt="La Montana Resort Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/sucat3.PNG" alt="Placeholder Image">
+                <img src="imgs/Montana3.png" alt="La Montana Resort Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/sucat4.PNG" alt="Placeholder Image">
-            </div>
-        </div>
-
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: ANYTIME FITNESS – SM City Grand Central
-                <br>
-                Location: Rizal Ave Ext, East Grace Park, Caloocan, Metro Manila
-            </div>
-        </div>
-        <div class="grid-container">
-            <div class="grid-item fade-in-item">
-                <img src="imgs/calcoon.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/calcoon2.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/calcoon3.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/calcoon4.PNG" alt="Placeholder Image">
+                <img src="imgs/Montana4.png" alt="La Montana Resort Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-
-                Project: ANYTIME FITNESS RED Hotel- Cubao
-                <br>
-                Location: 627 Epifanio de los Santos Ave., Cubao, Quezon City
+        <div class="image-grid project-block" data-category="interior-fitout" id="project-decorp-1">
+            <div class="project-header">
+                <p class="project-category-label">Office Renovation &amp; Interior Fit-Out Works</p>
+                <h3 class="project-title">Dagupan Electric Company (DECORP)</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> 62 West Ave, Quezon City, 1104 Metro
+                    Manila</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="interior-fitout">
             <div class="grid-item fade-in-item">
-                <img src="imgs/cubao.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag1.png" alt="DECORP Office Renovation Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/cubao2.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag2.png" alt="DECORP Office Renovation Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/cubao3.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag3.png" alt="DECORP Office Renovation Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/cubao4.PNG" alt="Placeholder Image">
-            </div>
-        </div>
-
-        <div class="image-grid" id="Property">
-            <div>
-                <h2><b>Kitchen Fit-out Works</b></h2>
-                Project: Florita’s Countryside
-                <br>
-                Location: Paranaque City
-            </div>
-        </div>
-        <div class="grid-container">
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Paranaque.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Paranaque2.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Paranaque3.PNG" alt="Placeholder Image">
-            </div>
-            <div class="grid-item fade-in-item">
-                <img src="imgs/Paranaque4.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag4.png" alt="DECORP Office Renovation Image 4" loading="lazy">
             </div>
         </div>
 
-        <div class="image-grid" id="Property">
-            <div>
-                <h2><b>Pool Construction</b></h2>
-                Project: La Montana Resort Hotel Project
-                <br>
-                Location: Lot 52, Blk 9 Fuji St., La Montana Estates Brgy., Sta. Cruz, Antipolo City, Rizal
+        <div class="image-grid project-block" data-category="interior-fitout" id="project-decorp-2">
+            <div class="project-header">
+                <h3 class="project-title">Dagupan Electric Company (DECORP)</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> West Avenue, Quezon City</p>
             </div>
         </div>
-        <div class="grid-container">
+        <div class="grid-container project-block" data-category="interior-fitout">
             <div class="grid-item fade-in-item">
-                <img src="imgs/fuji.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag5.png" alt="DECORP West Avenue Image 1" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/fuji2.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag6.png" alt="DECORP West Avenue Image 2" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/fuji3.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag7.png" alt="DECORP West Avenue Image 3" loading="lazy">
             </div>
             <div class="grid-item fade-in-item">
-                <img src="imgs/fuji4.PNG" alt="Placeholder Image">
+                <img src="imgs/Dag8.png" alt="DECORP West Avenue Image 4" loading="lazy">
+            </div>
+        </div>
+
+        <div class="image-grid project-block" data-category="interior-fitout" id="project-macao">
+            <div class="project-header">
+                <p class="project-category-label">Interior Fit-Out Works</p>
+                <h3 class="project-title">Macao Project</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Signa Designer Residences, Ground,
+                    Valero, Makati, Metro Manila</p>
+            </div>
+        </div>
+        <div class="grid-container project-block" data-category="interior-fitout">
+            <div class="grid-item fade-in-item">
+                <img src="imgs/Macao1.PNG" alt="Macao Interior Fit-out Image 1" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/macao2.PNG" alt="Macao Interior Fit-out Image 2" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/macao3.PNG" alt="Macao Interior Fit-out Image 3" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/macao4.PNG" alt="Macao Interior Fit-out Image 4" loading="lazy">
+            </div>
+        </div>
+
+        <div class="image-grid project-block" data-category="interior-fitout" id="project-anytime-sucat">
+            <div class="project-header">
+                <h3 class="project-title">ANYTIME FITNESS – SM City Sucat</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Bldg. B, SM City, 2nd Level Annex,
+                    1700 Dr Arcadio Santos Ave, Parañaque</p>
+            </div>
+        </div>
+        <div class="grid-container project-block" data-category="interior-fitout">
+            <div class="grid-item fade-in-item">
+                <img src="imgs/sucat1.PNG" alt="Anytime Fitness SM Sucat Image 1" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/sucat2.PNG" alt="Anytime Fitness SM Sucat Image 2" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/sucat3.PNG" alt="Anytime Fitness SM Sucat Image 3" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/sucat4.PNG" alt="Anytime Fitness SM Sucat Image 4" loading="lazy">
+            </div>
+        </div>
+
+        <div class="image-grid project-block" data-category="interior-fitout" id="project-anytime-caloocan">
+            <div class="project-header">
+                <h3 class="project-title">ANYTIME FITNESS – SM City Grand Central</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Rizal Ave Ext, East Grace Park,
+                    Caloocan, Metro Manila</p>
+            </div>
+        </div>
+        <div class="grid-container project-block" data-category="interior-fitout">
+            <div class="grid-item fade-in-item">
+                <img src="imgs/calcoon.PNG" alt="Anytime Fitness SM Grand Central Image 1" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/calcoon2.PNG" alt="Anytime Fitness SM Grand Central Image 2" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/calcoon3.PNG" alt="Anytime Fitness SM Grand Central Image 3" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/calcoon4.PNG" alt="Anytime Fitness SM Grand Central Image 4" loading="lazy">
+            </div>
+        </div>
+
+        <div class="image-grid project-block" data-category="interior-fitout" id="project-anytime-cubao">
+            <div class="project-header">
+                <h3 class="project-title">ANYTIME FITNESS RED Hotel – Cubao</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> 627 Epifanio de los Santos Ave.,
+                    Cubao, Quezon City</p>
+            </div>
+        </div>
+        <div class="grid-container project-block" data-category="interior-fitout">
+            <div class="grid-item fade-in-item">
+                <img src="imgs/cubao.PNG" alt="Anytime Fitness Cubao Image 1" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/cubao2.PNG" alt="Anytime Fitness Cubao Image 2" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/cubao3.PNG" alt="Anytime Fitness Cubao Image 3" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/cubao4.PNG" alt="Anytime Fitness Cubao Image 4" loading="lazy">
+            </div>
+        </div>
+
+        <div class="image-grid project-block" data-category="kitchen-fitout" id="project-kitchen-floritas">
+            <div class="project-header">
+                <p class="project-category-label">Kitchen Fit-Out Works</p>
+                <h3 class="project-title">Florita's Countryside</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Paranaque City</p>
+            </div>
+        </div>
+        <div class="grid-container project-block" data-category="kitchen-fitout">
+            <div class="grid-item fade-in-item">
+                <img src="imgs/Paranaque.PNG" alt="Floritas Kitchen Fit-out Image 1" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/Paranaque2.PNG" alt="Floritas Kitchen Fit-out Image 2" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/Paranaque3.PNG" alt="Floritas Kitchen Fit-out Image 3" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/Paranaque4.PNG" alt="Floritas Kitchen Fit-out Image 4" loading="lazy">
+            </div>
+        </div>
+
+        <div class="image-grid project-block" data-category="kitchen-fitout" id="project-pool-montana">
+            <div class="project-header">
+                <p class="project-category-label">Pool Construction</p>
+                <h3 class="project-title">La Montana Resort Hotel Project</h3>
+                <p class="project-location"><i class="fas fa-map-marker-alt"></i> Lot 52, Blk 9 Fuji St., La Montana
+                    Estates, Sta. Cruz, Antipolo City, Rizal</p>
+            </div>
+        </div>
+        <div class="grid-container project-block" data-category="kitchen-fitout">
+            <div class="grid-item fade-in-item">
+                <img src="imgs/fuji.PNG" alt="La Montana Pool Construction Image 1" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/fuji2.PNG" alt="La Montana Pool Construction Image 2" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/fuji3.PNG" alt="La Montana Pool Construction Image 3" loading="lazy">
+            </div>
+            <div class="grid-item fade-in-item">
+                <img src="imgs/fuji4.PNG" alt="La Montana Pool Construction Image 4" loading="lazy">
             </div>
         </div>
 
@@ -575,15 +603,18 @@
         <div id="caption" class="caption"></div>
     </div>
 
-    <section class="contact-section" id="contact-section">
+    <div class="section-divider"></div>
+
+    <section class="contact-section fade-in-section" id="contact-section">
         <h2 class="section-title">Contact Us</h2>
         <p class="contact-intro">
             We're glad you're here.<br>
             PrimoVera works with clients seeking professional architectural, engineering, construction, and property
             management solutions.<br>
             Please complete the form below and our team will get back to you within 1–2 business days.<br>
-            <note>Note: We prioritize serious project inquiries. For partnership, vendor, or job inquiries, please use
-                the appropriate email below.</note>
+            <span class="note">Note: We prioritize serious project inquiries. For partnership, vendor, or job inquiries,
+                please use
+                the appropriate email below.</span>
         </p>
         <form class="contact-form" target="_blank" action="https://formsubmit.co/info@primovera.net" method="POST"
             enctype="multipart/form-data">
@@ -635,7 +666,8 @@
                 <label for="file-upload">Attach a File (JPEG, PNG or PDF)</label>
                 <input type="file" name="attachment" accept="image/png, image/jpeg, application/pdf">
             </div>
-            <button type="submit" class="submit-btn">Submit Inquiry</button>
+            <div id="form-status" class="form-status" aria-live="polite"></div>
+            <button type="submit" class="submit-btn" id="submit-btn">Submit Inquiry</button>
         </form>
     </section>
 
@@ -647,7 +679,8 @@
             <a href="tel:+639189214395" class="social-item" title="Call Us"><i class="fas fa-phone"></i></a>
             <a href="https://www.facebook.com/primoverainc" target="_blank" class="social-item" title="Facebook"><i
                     class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-item" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-item social-disabled" title="Instagram (Coming Soon)"><i
+                    class="fab fa-instagram"></i></a>
         </div>
         <button class="main-fab" id="fabButton">
             <i class="fas fa-home"></i>
@@ -655,25 +688,42 @@
         </button>
     </div>
 
+
     <footer>
-        <p>&copy; 2025 Primo Vera. All rights reserved.<br>
-            Location: Blk 19 Lot 7 Sto. Tomas Guadanoville Tala Barangay 187<br>
-            1427 Caloocan City NCR, Third District Philippines<br>
-            Business Hours: Monday–Friday 9:00 AM–6:00 PM<br>
-            Phone: +63 918 921 4395<br>
-            Email: info@primovera.net<br>
-        </p>
-        <div class="social-links">
-            <a href="mailto:PrimoVerainc@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="tel:+639189214395"><i class="fas fa-phone"></i></a>
-            <a href="https://www.facebook.com/primoverainc"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="imgs/logo.png" alt="PrimoVera Logo" class="footer-logo">
+                <p class="footer-tagline">Crafting Spaces. Managing Assets. Delivering Value.</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#about-section">Our Company</a></li>
+                    <li><a href="#projects-section">Our Projects</a></li>
+                    <li><a href="#contact-section">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Contact</h4>
+                <p>Blk 19 Lot 7 Sto. Tomas, Tala, Caloocan City, NCR</p>
+                <p>Mon–Fri, 9:00 AM–6:00 PM</p>
+                <p>+63 918 921 4395</p>
+                <p>info@primovera.net</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="social-links">
+                <a href="mailto:PrimoVerainc@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+639189214395" title="Phone"><i class="fas fa-phone"></i></a>
+                <a href="https://www.facebook.com/primoverainc" target="_blank" title="Facebook"><i
+                        class="fab fa-facebook"></i></a>
+                <a href="#" class="social-disabled" title="Instagram (Coming Soon)"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="footer-copy">&copy; 2025 Primo Vera. All rights reserved.</p>
         </div>
     </footer>
+
     <script src="js/script.js"></script>
-    <script src="js/projects-carousel.js"></script>
 </body>
 
 </html>

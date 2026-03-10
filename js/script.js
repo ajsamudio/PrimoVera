@@ -1,274 +1,240 @@
-// Function to check if an element is in the viewport
+// --- Scroll-in Animations ---
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
         rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.bottom >= 0 &&
-        rect.left >= 0 &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        rect.bottom >= 0
     );
 }
 
-// Function to add 'visible' class to service cards when they are in the viewport
-function animateServiceCards() {
-    const serviceCards = document.querySelectorAll('.service-card, .placeholder-section');
-    const gridItems = document.querySelectorAll('.grid-item');
-
-    serviceCards.forEach(card => {
-        if (isInViewport(card)) {
-            card.classList.add('visible');
-        } else if (card.classList.contains('visible')) {
-            card.classList.remove('visible');
-        }
-    });
-
-    gridItems.forEach(item => {
-        if (isInViewport(item)) {
-            item.classList.add('visible');
-        } else if (item.classList.contains('visible')) {
-            item.classList.remove('visible');
+function animateOnScroll() {
+    document.querySelectorAll('.service-card, .about-section, .placeholder-section, .grid-item, .contact-section').forEach(el => {
+        if (isInViewport(el)) {
+            el.classList.add('visible');
         }
     });
 }
 
-// Initial check on page load
-animateServiceCards();
+animateOnScroll();
 
-// Check for animation on scroll
-window.addEventListener('scroll', animateServiceCards);
+// --- Carousel ---
+function initCarousel(containerSelector, dotsContainerId) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+    const images = container.querySelectorAll('.carousel-img');
+    const prev = container.querySelector('.carousel-button.prev');
+    const next = container.querySelector('.carousel-button.next');
+    if (!images.length) return;
 
-// Function to add 'visible' class to contact section when they are in the viewport
-function animateContactSection() {
-    const contactSection = document.querySelector('.contact-section');
-    if (contactSection) {
-        if (isInViewport(contactSection)) {
-            contactSection.classList.add('visible');
-        }
-    }
-}
+    let index = 0;
+    let timer;
 
-// Initial check on page load
-animateContactSection();
+    const dotsContainer = dotsContainerId ? document.getElementById(dotsContainerId) : null;
 
-// Check for animation on scroll
-window.addEventListener('scroll', animateContactSection);
-
-// Function to add 'visible' class to the logo overlay on page load
-function showLogoOverlay() {
-    const logoOverlay = document.querySelector('.logo-overlay');
-    if (logoOverlay) {
-        logoOverlay.classList.add('visible');
-    }
-}
-
-// Show the logo overlay when the page loads
-window.addEventListener('load', showLogoOverlay);
-
-// --- Mobile Navigation JavaScript ---
-document.addEventListener('DOMContentLoaded', function () {
-    const hamburgerIcon = document.querySelector('.hamburger-icon');
-    const body = document.body;
-
-    if (hamburgerIcon) {
-        hamburgerIcon.addEventListener('click', function () {
-            body.classList.toggle('mobile-menu-open');
+    // Build dots if container provided
+    if (dotsContainer && images.length) {
+        images.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', () => { index = i; update(); clearInterval(timer); start(); });
+            dotsContainer.appendChild(dot);
         });
     }
-});
 
-// --- Desktop Navigation Hide/Show on Scroll ---
-let lastScrollTop = 0;
-let scrollDownCount = 0;
-const desktopNav = document.querySelector('.desktop-nav');
-const headerLogo = document.querySelector('.header-logo-container'); // Get header logo element
-const mobileNav = document.querySelector('.mobile-nav'); // Get mobile nav element
-const mainHeader = document.querySelector('header'); // Get the main header element
-
-window.addEventListener('scroll', function () {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    // Check if in mobile view by checking if mobileNav is displayed
-    const isMobileView = window.getComputedStyle(mobileNav).display !== 'none';
-
-    if (scrollTop > lastScrollTop) {
-        // Scrolling down
-        scrollDownCount++;
-        // Edit the number '2' below to change the scroll amount needed to hide the elements
-        if (scrollDownCount >= 2) {
-            // Hide the main header background
-            mainHeader.style.transform = 'translateY(-100%)';
-            mainHeader.style.transition = 'transform 0.3s ease';
-
-            if (!isMobileView) { // Apply to desktop nav and logo on desktop
-                desktopNav.style.opacity = '0'; // Start fade out
-                headerLogo.style.opacity = '0'; // Start fade out
-                setTimeout(() => {
-                    desktopNav.style.visibility = 'hidden'; // Hide after fade out
-                    headerLogo.style.visibility = 'hidden'; // Hide after fade out
-                }, 300); // Match CSS transition duration
-            } else { // Apply to mobile nav and logo on mobile
-                mobileNav.style.opacity = '0'; // Start fade out
-                headerLogo.style.opacity = '0'; // Start fade out
-                setTimeout(() => {
-                    mobileNav.style.visibility = 'hidden'; // Hide after fade out
-                    headerLogo.style.visibility = 'hidden'; // Hide after fade out
-                }, 300); // Match CSS transition duration
-            }
-        }
-    } else {
-        // Scrolling up
-        scrollDownCount = 0; // Reset the counter
-
-        // Show the main header background
-        mainHeader.style.transform = 'translateY(0)';
-
-        if (!isMobileView) { // Apply to desktop nav and logo on desktop
-            desktopNav.style.visibility = 'visible'; // Show before fade in
-            headerLogo.style.visibility = 'visible'; // Show before fade in
-            setTimeout(() => {
-                desktopNav.style.opacity = '1'; // Start fade in
-                headerLogo.style.opacity = '1'; // Start fade in
-            }, 10); // Small delay to allow visibility to apply before opacity transition
-        } else { // Apply to mobile nav and logo on mobile
-            mobileNav.style.visibility = 'visible'; // Show before fade in
-            headerLogo.style.visibility = 'visible'; // Show before fade in
-            setTimeout(() => {
-                mobileNav.style.opacity = '1'; // Start fade in
-                headerLogo.style.opacity = '1'; // Start fade in
-            }, 10); // Small delay to allow visibility to apply before opacity transition
+    function update() {
+        images.forEach((img, i) => img.classList.toggle('active', i === index));
+        if (dotsContainer) {
+            dotsContainer.querySelectorAll('.carousel-dot')
+                .forEach((dot, i) => dot.classList.toggle('active', i === index));
         }
     }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-});
 
+    function advance() {
+        index = (index + 1) % images.length;
+        update();
+    }
 
-// --- Image Modal JavaScript ---
+    function back() {
+        index = (index - 1 + images.length) % images.length;
+        update();
+    }
+
+    function start() {
+        timer = setInterval(advance, 3500);
+    }
+
+    if (prev) prev.addEventListener('click', () => { back(); clearInterval(timer); start(); });
+    if (next) next.addEventListener('click', () => { advance(); clearInterval(timer); start(); });
+
+    update();
+    start();
+}
+
+// --- Mobile Navigation ---
 document.addEventListener('DOMContentLoaded', function () {
-    // Get the modal
+    // Carousels — hero gets dots, projects carousel does not
+    initCarousel('.hero .carousel-container', 'hero-dots');
+    initCarousel('.carousel-container.projects-carousel');
+
+    // Hamburger menu toggle
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    if (hamburgerIcon) {
+        hamburgerIcon.addEventListener('click', function () {
+            document.body.classList.toggle('mobile-menu-open');
+        });
+    }
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', function () {
+            document.body.classList.remove('mobile-menu-open');
+        });
+    });
+
+    // --- Image Modal ---
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const captionText = document.getElementById('caption');
-    const closeButton = document.getElementsByClassName('close-button')[0];
+    const closeButton = document.querySelector('.close-button');
 
-    // Get all grid items
-    const gridItems = document.querySelectorAll('.image-grid .grid-item');
-
-    gridItems.forEach(item => {
+    document.querySelectorAll('.grid-container .grid-item').forEach(item => {
         item.addEventListener('click', function () {
             modal.classList.add('active');
             modalImage.src = this.querySelector('img').src;
-            captionText.innerHTML = this.querySelector('p').innerHTML;
+
+            // Walk up to grid-container, then get preceding .image-grid sibling for metadata
+            const gridContainer = this.closest('.grid-container');
+            const imageGrid = gridContainer ? gridContainer.previousElementSibling : null;
+            const projectTitle = imageGrid ? imageGrid.querySelector('.project-title') : null;
+            const projectLoc = imageGrid ? imageGrid.querySelector('.project-location') : null;
+
+            if (projectTitle) {
+                const locText = projectLoc ? projectLoc.textContent.trim() : '';
+                captionText.innerHTML = '<strong>' + projectTitle.textContent + '</strong>' +
+                    (locText ? '<span>' + locText + '</span>' : '');
+            } else {
+                captionText.innerHTML = this.querySelector('img').alt || '';
+            }
         });
     });
 
-    // When the user clicks on <span> (x), close the modal
     if (closeButton) {
         closeButton.addEventListener('click', function () {
             modal.classList.remove('active');
         });
     }
 
-    // When the user clicks anywhere outside of the image, close it
     window.addEventListener('click', function (event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.classList.remove('active');
         }
     });
+
+    // --- Project Filter ---
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.dataset.filter;
+            document.querySelectorAll('.project-block').forEach(block => {
+                if (filter === 'all' || block.dataset.category === filter) {
+                    block.classList.remove('hidden');
+                } else {
+                    block.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+
+    // --- Form Submission Feedback ---
+    const contactForm = document.querySelector('.contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+    if (contactForm && submitBtn) {
+        contactForm.addEventListener('submit', function () {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            if (formStatus) {
+                formStatus.className = 'form-status loading';
+                formStatus.textContent = 'Submitting your inquiry...';
+            }
+            // Re-enable after 8s in case of network issue
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Inquiry';
+                if (formStatus) formStatus.className = 'form-status';
+            }, 8000);
+        });
+    }
 });
 
-// --- Carousel JavaScript ---
-document.addEventListener('DOMContentLoaded', function () {
-    const carouselContainer = document.querySelector('.hero .carousel-container');
-    const carouselImages = carouselContainer.querySelectorAll('.carousel-img');
-    const prevButton = carouselContainer.querySelector('.carousel-button.prev');
-    const nextButton = carouselContainer.querySelector('.carousel-button.next');
-    let currentIndex = 0;
-    let intervalId;
+// --- Unified Scroll Handler (header hide/show + FAB hide/show + animations) ---
+const mainHeader = document.querySelector('header');
+const fabContainer = document.querySelector('.floating-social-fab');
+let lastScrollTop = 0;
+let scrollDownCount = 0;
 
-    function updateCarousel() {
-        carouselImages.forEach((img, index) => {
-            img.classList.toggle('active', index === currentIndex);
-        });
+window.addEventListener('scroll', function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const isMobileView = window.getComputedStyle(document.querySelector('.mobile-nav')).display !== 'none';
+    const desktopNav = document.querySelector('.desktop-nav');
+    const headerLogo = document.querySelector('.header-logo-container');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    // Header hide/show
+    if (scrollTop > lastScrollTop) {
+        scrollDownCount++;
+        if (scrollDownCount >= 2) {
+            mainHeader.style.transform = 'translateY(-100%)';
+            mainHeader.style.transition = 'transform 0.3s ease';
+
+            const navEl = isMobileView ? mobileNav : desktopNav;
+            navEl.style.opacity = '0';
+            headerLogo.style.opacity = '0';
+            setTimeout(() => {
+                navEl.style.visibility = 'hidden';
+                headerLogo.style.visibility = 'hidden';
+            }, 300);
+        }
+    } else {
+        scrollDownCount = 0;
+        mainHeader.style.transform = 'translateY(0)';
+
+        const navEl = isMobileView ? mobileNav : desktopNav;
+        navEl.style.visibility = 'visible';
+        headerLogo.style.visibility = 'visible';
+        setTimeout(() => {
+            navEl.style.opacity = '1';
+            headerLogo.style.opacity = '1';
+        }, 10);
     }
 
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % carouselImages.length;
-        updateCarousel();
+    // FAB hide/show
+    if (fabContainer) {
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            fabContainer.style.transform = 'translateY(100px)';
+            fabContainer.style.opacity = '0';
+        } else {
+            fabContainer.style.transform = 'translateY(0)';
+            fabContainer.style.opacity = '1';
+        }
     }
 
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length;
-        updateCarousel();
-    }
 
-    // Button event listeners
-    if (prevButton) {
-        prevButton.addEventListener('click', () => {
-            prevImage();
-            clearInterval(intervalId); // Stop auto-scroll on manual navigation
-            startCarousel(); // Restart auto-scroll
-        });
-    }
+    // Scroll animations
+    animateOnScroll();
 
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            nextImage();
-            clearInterval(intervalId); // Stop auto-scroll on manual navigation
-            startCarousel(); // Restart auto-scroll
-        });
-    }
-
-    function startCarousel() {
-        intervalId = setInterval(nextImage, 3500); // Change image every 3 seconds
-    }
-
-    // Start carousel on page load
-    if (carouselImages.length > 0) {
-        updateCarousel();
-        startCarousel();
-    }
-
-    // Stop carousel when mouse is over
-    // if (carouselContainer) {
-    //     carouselContainer.addEventListener('mouseover', () => {
-    //         clearInterval(intervalId);
-    //     });
-
-    //     carouselContainer.addEventListener('mouseout', () => {
-    //         startCarousel();
-    //     });
-    // }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-// --- Floating Social FAB ---
+// --- Floating Social FAB toggle ---
 document.addEventListener('DOMContentLoaded', function () {
     const fabButton = document.getElementById('fabButton');
-    const fabContainer = document.querySelector('.floating-social-fab');
-
     if (fabButton && fabContainer) {
         fabButton.addEventListener('click', function () {
             fabContainer.classList.toggle('active');
         });
     }
-});
-
-// Hide FAB on scroll down (matching nav behavior)
-const fabContainer = document.querySelector('.floating-social-fab');
-let lastScrollTopFab = 0;
-
-window.addEventListener('scroll', function () {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (fabContainer) {
-        if (scrollTop > lastScrollTopFab && scrollTop > 100) {
-            // Scrolling down
-            fabContainer.style.transform = 'translateY(100px)'; // Hide downwards
-            fabContainer.style.opacity = '0';
-        } else {
-            // Scrolling up
-            fabContainer.style.transform = 'translateY(0)';
-            fabContainer.style.opacity = '1';
-        }
-    }
-    lastScrollTopFab = scrollTop <= 0 ? 0 : scrollTop;
 });
