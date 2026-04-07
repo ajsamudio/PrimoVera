@@ -20,7 +20,7 @@ export default function FloatingFab() {
       className={`floating-social-fab${open ? ' active' : ''}${hidden ? ' fab-hidden' : ''}`}
     >
       <div className="social-options">
-        <a href="mailto:PrimoVerainc@gmail.com" className="social-item" title="Email Us">
+        <a href="mailto:info@primovera.net" className="social-item" title="Email Us">
           <i className="fas fa-envelope"></i>
         </a>
         <a href="tel:+639189214395" className="social-item" title="Call Us">
@@ -34,9 +34,6 @@ export default function FloatingFab() {
           title="Facebook"
         >
           <i className="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" className="social-item" title="Instagram">
-          <i className="fab fa-instagram"></i>
         </a>
       </div>
 

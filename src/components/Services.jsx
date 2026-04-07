@@ -96,7 +96,7 @@ function ServiceCard({ service }) {
 
 export default function Services() {
   return (
-    <section className="services-section">
+    <section className="services-section" id="services-section" aria-label="Our Core Services">
       <h2 className="section-title">Our Core Services</h2>
       <div className="services-container">
         {services.map((s, i) => (

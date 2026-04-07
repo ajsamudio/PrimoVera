@@ -24,6 +24,9 @@ export default function Carousel({ images, className = '' }) {
           src={img.src}
           alt={img.alt}
           className={`carousel-img${i === current ? ' active' : ''}`}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchPriority={i === 0 ? 'high' : 'low'}
+          decoding={i === 0 ? 'sync' : 'async'}
         />
       ))}
       <button className="carousel-button prev" onClick={prev}>&#10094;</button>

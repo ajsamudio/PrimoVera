@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.primovera.net/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/header.jpg</image:loc>
+      <image:title>PrimoVera — Architectural Design and Construction Philippines</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/Floritas3.PNG</image:loc>
+      <image:title>Floritas Countryside Restaurant — Design and Construction, Silang Cavite</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/Solona1.PNG</image:loc>
+      <image:title>Dakkar Multinational Townhouse Project — BF Homes Paranaque City</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/Montana1.png</image:loc>
+      <image:title>La Montana Resort Hotel — Construction Project Antipolo City Rizal</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/Dag1.png</image:loc>
+      <image:title>DECORP Dagupan Electric Company Office Renovation — Quezon City</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/sucat1.PNG</image:loc>
+      <image:title>Anytime Fitness SM City Sucat — Interior Fit-out by PrimoVera</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/cubao.PNG</image:loc>
+      <image:title>Anytime Fitness RED Hotel Cubao — Interior Fit-out by PrimoVera Quezon City</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.primovera.net/imgs/fuji.PNG</image:loc>
+      <image:title>La Montana Resort Hotel Pool Construction — Antipolo City Rizal</image:title>
+    </image:image>
+  </url>
+</urlset>

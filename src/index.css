@@ -427,7 +427,7 @@ header.header-hidden {
   margin-bottom: 80px;
 }
 
-.banner-image h1 {
+.banner-image h2 {
   position: relative;
   z-index: 2;
   font-size: 4rem;
@@ -507,6 +507,8 @@ header.header-hidden {
 
 .modal-overlay.active { display: flex; }
 
+body.modal-open { overflow: hidden; }
+
 .modal-content {
   max-width: 90%;
   max-height: 80vh;
@@ -539,7 +541,7 @@ header.header-hidden {
   color: var(--text-secondary);
 }
 
-.contact-intro note {
+.contact-intro .contact-note {
   display: block;
   margin-top: 12px;
   font-size: 0.85rem;

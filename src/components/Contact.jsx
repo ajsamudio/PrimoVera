@@ -8,19 +8,21 @@ export default function Contact() {
         and property management solutions.<br />
         Please complete the form below and our team will get back to you within 1–2 business days.
         <br />
-        <note>
+        <span className="contact-note">
           Note: We prioritize serious project inquiries. For partnership, vendor, or job inquiries,
           please use the appropriate email below.
-        </note>
+        </span>
       </p>
 
       <form
         className="contact-form"
-        target="_blank"
         action="https://formsubmit.co/info@primovera.net"
         method="POST"
         encType="multipart/form-data"
       >
+        <input type="hidden" name="_subject" value="New Project Inquiry — PrimoVera" />
+        <input type="hidden" name="_next" value="https://www.primovera.net/" />
+        <input type="text" name="_honey" style={{ display: 'none' }} />
         <div className="form-group">
           <label htmlFor="full-name">Full Name *</label>
           <input type="text" id="full-name" name="full-name" required />

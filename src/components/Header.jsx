@@ -38,7 +38,7 @@ export default function Header() {
         <img src="/imgs/logo.png" alt="Primo Vera Logo" className="header-logo" />
       </div>
 
-      <nav className="desktop-nav">
+      <nav className="desktop-nav" aria-label="Main navigation">
         <div className="desktop-nav-links">
           <ul>
             <li><a href="#" onClick={e => handleNavClick(e, null)}>Our Company</a></li>
@@ -49,7 +49,7 @@ export default function Header() {
       </nav>
 
       <div className="mobile-nav">
-        <button className="hamburger-icon" onClick={() => setMenuOpen(o => !o)}>
+        <button className="hamburger-icon" onClick={() => setMenuOpen(o => !o)} aria-label="Toggle mobile navigation menu" aria-expanded={menuOpen}>
           <i className="fas fa-bars"></i>
         </button>
         <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>

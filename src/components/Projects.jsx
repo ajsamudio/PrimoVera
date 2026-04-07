@@ -21,7 +21,7 @@ function GridItem({ img, onClick }) {
 
   return (
     <div className="grid-item fade-in-item" ref={ref} onClick={() => onClick(img)}>
-      <img src={img.src} alt={img.alt} />
+      <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
     </div>
   )
 }
@@ -35,11 +35,16 @@ export default function Projects() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  useEffect(() => {
+    document.body.classList.toggle('modal-open', !!modal)
+    return () => document.body.classList.remove('modal-open')
+  }, [modal])
+
   return (
-    <section className="placeholder-section" id="projects-section">
+    <section className="placeholder-section" id="projects-section" aria-label="Our Projects Portfolio">
       <div className="banner-image">
         <Carousel images={bannerImages} className="projects-carousel" />
-        <h1>Our Projects</h1>
+        <h2>Our Projects</h2>
       </div>
 
       {projectGroups.map((group, gi) => (
@@ -48,7 +53,7 @@ export default function Projects() {
             <div key={pi}>
               <div className="image-grid">
                 <div>
-                  {pi === 0 && <h2><b>{group.category}</b></h2>}
+                  {pi === 0 && <h3>{group.category}</h3>}
                   <p><strong>Project:</strong> {project.name}</p>
                   <p><strong>Location:</strong> {project.location}</p>
                 </div>
@@ -67,8 +72,11 @@ export default function Projects() {
       <div
         className={`modal-overlay${modal ? ' active' : ''}`}
         onClick={e => { if (e.target === e.currentTarget) setModal(null) }}
+        role="dialog"
+        aria-modal="true"
+        aria-label={modal ? modal.alt : 'Project image'}
       >
-        <button className="close-button" onClick={() => setModal(null)}>&times;</button>
+        <button className="close-button" onClick={() => setModal(null)} aria-label="Close image">&times;</button>
         {modal && <img className="modal-content" src={modal.src} alt={modal.alt} />}
       </div>
     </section>
